@@ -18,8 +18,7 @@ const config = {
 
   i18n: {
     defaultLocale: 'zh-cn',
-    // locales: ['en', 'zh-cn'],
-    locales: ['zh-cn'],
+    locales: ['en', 'zh-cn']
   },
 
   presets: [
@@ -27,11 +26,7 @@ const config = {
       '@docusaurus/preset-classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
-        },
+        docs: false,
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
@@ -55,12 +50,12 @@ const config = {
           src: 'img/logo.svg',
         },
         items: [
-          {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Doc',
-          },
+          // {
+          //   type: 'doc',
+          //   docId: 'intro',
+          //   position: 'left',
+          //   label: 'Doc',
+          // },
           {
             to: 'notes/',
             label: "Notes"
@@ -80,11 +75,11 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Technical',
+            title: 'notes',
             items: [
               {
-                label: 'Technical',
-                to: '/technical/intro',
+                label: 'Notes',
+                to: '/Notes/intro',
               },
             ],
           },
