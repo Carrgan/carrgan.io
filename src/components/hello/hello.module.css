@@ -1,4 +1,40 @@
-.container {
+.mainContainer {
+    margin-bottom: -8px;
+    position: relative;
+}
+
+.layoutContainer {
     width: 100%;
-    height: 1919px;
+    height: 100%;
+    z-index: 2;
+    position: absolute;
+    display: grid;
+    grid-template:"a b";
+}
+
+.textContainer {
+    grid-area: a;
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoContainer {
+    grid-area: b;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+.layoutContainer h1 {
+    font-size: 70px;
+    font-weight: 300;
+}
+
+.layoutContainer h4 {
+    /*font-size: 70px;*/
+    font-weight: 400;
 }

@@ -4,7 +4,7 @@ import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./index.module.css";
-import Logo from "@site/src/components/logo";
+import Logo from "@site/src/components/hello/logo";
 import HomepageFeatures from "../components/HomepageFeatures";
 import Hello from "@site/src/components/hello";
 
@@ -12,7 +12,7 @@ function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
-      <div className="container">
+      <div className="mainContainer">
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>

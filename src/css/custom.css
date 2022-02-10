@@ -16,6 +16,10 @@
   --ifm-code-font-size: 95%;
   --ifm-backgroud-color: rgb(17, 25, 38);
   --ifm-navbar-background-color: rgb(17, 25, 38);
+  --ifm-navbar-link-color: rgb(255, 255, 255);
+}
+::-webkit-scrollbar {
+  display: none;
 }
 
 
