@@ -33,3 +33,82 @@
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+
+@keyframes emerge {
+  0% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes star-flash {
+  0% {
+    opacity:0.756878807
+  }
+  50% {
+    opacity:1
+  }
+  100% {
+    opacity:0.756878807
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: none;
+  }
+  55% {
+    transform: translate(2px, 1%);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes intense-float {
+  0% {
+    transform: none;
+  }
+  55% {
+    transform: translate(0, 10px);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes small-plant {
+  0% {
+    transform: none;
+  }
+  60% {
+    transform: translate(10px, 20px);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes meteor-r {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50%, 140%);
+  }
+}
+
+@keyframes meteor-l {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-50%, 140%);
+  }
+}

@@ -1,15 +1,32 @@
-import React, { createRef, ReactNode, useMemo, useState } from "react";
+import React, { createRef, ReactNode, useEffect, useMemo, useState } from "react";
 import Style from "./hello.module.css";
 import Start from "@site/src/components/hello/start";
 import { Random } from "@site/src/components/hello/helper";
 import useScreenSize from "@site/src/screenHelper";
+import Meteor from "@site/src/components/hello/meteor";
 
 const Background = ({ children }: { children?: ReactNode }) => {
   const container = createRef<HTMLDivElement>();
   const [currentWidth, currentHeight] = useScreenSize();
+  const [meteor, setMeteor] = useState<ReactNode>();
+
+  useEffect(() => {
+    const timeOut = setTimeout(() => {
+      const x = Random(0, currentWidth);
+      if (x > currentWidth / 2) {
+        setMeteor(<Meteor x={x} left={true} style={{ animation: "meteor-l 3s" }} />);
+      } else {
+        setMeteor(<Meteor x={x} style={{ animation: "meteor-r 3s" }} />);
+      }
+    }, Random(5000, 20000));
+    return () => {
+      console.log("xxxx");
+      clearTimeout(timeOut);
+    };
+  }, [meteor]);
 
   const renderCircle = () => {
-    const number = 20;
+    const number = 60;
     const xPadding = 20;
     const yPadding = 40;
     const coordinates: [number, number][] = [];
@@ -31,8 +48,12 @@ const Background = ({ children }: { children?: ReactNode }) => {
       <circle
         id="Oval"
         key={`Circle-${index}`}
-        stroke="#979797"
-        fill="#D8D8D8"
+        fill="#ffff"
+        style={{
+          opacity: 0,
+          animation: `emerge ${Random(3, 8)}s infinite`,
+          animationDelay: Random(0, 5) + "s"
+        }}
         cx={i[0]}
         cy={i[1]}
         r={Random(2, 4)}
@@ -57,6 +78,10 @@ const Background = ({ children }: { children?: ReactNode }) => {
         key={`Start-${index}`}
         fill="#D94F49"
         opacity="0.756878807"
+        style={{
+          animation: `star-flash ${Random(2, 4)}s infinite`,
+          animationDelay: Random(0, 3) + "s"
+        }}
         weight={Random(5, 15)}
         center={i}
       />
@@ -82,6 +107,7 @@ const Background = ({ children }: { children?: ReactNode }) => {
             <g id="Tile" fill="#111926">
               <rect id="Rectangle" x="0" y="0" width={currentWidth} height={currentHeight} />
             </g>
+            {meteor}
             {Starts}
             {Circles}
           </g>

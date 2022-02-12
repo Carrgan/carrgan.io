@@ -1,5 +1,6 @@
 import React from "react";
 import useScreenSize from "@site/src/screenHelper";
+import { Random } from "@site/src/components/hello/helper";
 
 const Logo = () => {
   // const [, currentHeight] = useScreenSize();
@@ -8,7 +9,7 @@ const Logo = () => {
     <div>
       <svg
         width={currentHeight * 0.75}
-        height={currentHeight * 0.5}
+        height={currentHeight * 0.7}
         viewBox="0 0 488 323"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
@@ -136,14 +137,26 @@ const Logo = () => {
             <g id="Smail-Plant" transform="translate(47.623353, 38.248013)">
               <g id="Plant" fill="url(#linearGradient-wwl4--iet0-2)" opacity="1">
                 <path
+                  style={{
+                    animation: `small-plant 6s infinite`
+                  }}
                   d="M0,40 C0,17.90861 17.90861,0 40,0 C62.09139,0 80,17.90861 80,40 C80,62.09139 62.09139,80 40,80 C17.90861,80 0,62.09139 0,40"
                   id="path-1"
                 ></path>
               </g>
               <g id="Oval" transform="translate(40.000000, 14.285714)" fillRule="nonzero">
                 <g id="path-4">
-                  <use fill="#D8D8D8" xlinkHref="#path-wwl4--iet0-3"></use>
                   <use
+                    fill="#D8D8D8"
+                    xlinkHref="#path-wwl4--iet0-3"
+                    style={{
+                      animation: `small-plant 6s infinite`
+                    }}
+                  ></use>
+                  <use
+                    style={{
+                      animation: `small-plant 6s infinite`
+                    }}
                     fill="black"
                     fillOpacity="1"
                     filter="url(#filter-wwl4--iet0-4)"
@@ -152,8 +165,18 @@ const Logo = () => {
                 </g>
               </g>
               <g id="path-6" transform="translate(17.142857, 40.000000)">
-                <use fill="#D8D8D8" fillRule="evenodd" xlinkHref="#path-wwl4--iet0-5"></use>
                 <use
+                  fill="#D8D8D8"
+                  fillRule="evenodd"
+                  xlinkHref="#path-wwl4--iet0-5"
+                  style={{
+                    animation: `small-plant 6s infinite`
+                  }}
+                ></use>
+                <use
+                  style={{
+                    animation: `small-plant 6s infinite`
+                  }}
                   fill="black"
                   fillOpacity="1"
                   filter="url(#filter-wwl4--iet0-6)"
@@ -171,6 +194,9 @@ const Logo = () => {
                 fill="url(#linearGradient-wwl4--iet0-7)"
               >
                 <path
+                  style={{
+                    animation: `intense-float 6s infinite`
+                  }}
                   d="M0,151.125321 C0,67.6611109 70.6307247,0 157.758139,0 C244.885553,0 315.516278,67.6611109 315.516278,151.125321 C315.516278,234.589531 244.885553,302.250642 157.758139,302.250642 C70.6307247,302.250642 0,234.589531 0,151.125321"
                   id="path-9"
                 ></path>
@@ -181,6 +207,10 @@ const Logo = () => {
                 fill="#FBD689"
               >
                 <path
+                  style={{
+                    animation: `float 4s infinite`,
+                    animationDelay: "0.5s"
+                  }}
                   d="M411.246418,5.68434189e-14 C459.38925,12.222307 489.513384,29.678792 489.513384,49.05923 C489.513384,86.022853 379.93208,115.987791 244.756692,115.987791 C109.581304,115.987791 -1.13686838e-13,86.022853 -1.13686838e-13,49.05923 C-1.13686838e-13,31.206768 25.56134,14.986845 67.2219984,2.986845 C52.3296001,12.026267 44.0145537,22.130178 44.3788873,32.563328 C45.5184621,65.19648 131.139833,88.693172 235.619571,85.044659 C340.099309,81.396146 423.873063,51.984046 422.733489,19.350894 C422.494178,12.497932 418.52922,6.047888 411.446354,0.167541 L411.246418,5.68434189e-14 Z"
                   id="path-11"
                 ></path>

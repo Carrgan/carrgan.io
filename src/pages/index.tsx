@@ -33,10 +33,6 @@ export default function Home(): JSX.Element {
       description="Description will go into a meta tag in <head />"
     >
       <Hello />
-      {/*<HomepageHeader />*/}
-      {/*<main>*/}
-      {/*  <HomepageFeatures />*/}
-      {/*</main>*/}
     </Layout>
   );
 }
