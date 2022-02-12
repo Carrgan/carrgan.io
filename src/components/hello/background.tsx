@@ -20,7 +20,6 @@ const Background = ({ children }: { children?: ReactNode }) => {
       }
     }, Random(5000, 20000));
     return () => {
-      console.log("xxxx");
       clearTimeout(timeOut);
     };
   }, [meteor]);
@@ -51,8 +50,7 @@ const Background = ({ children }: { children?: ReactNode }) => {
         fill="#ffff"
         style={{
           opacity: 0,
-          animation: `emerge ${Random(3, 8)}s infinite`,
-          animationDelay: Random(0, 5) + "s"
+          animation: `emerge ${Random(3, 8)}s ${Random(0, 5) + "s"} infinite`
         }}
         cx={i[0]}
         cy={i[1]}
@@ -79,8 +77,7 @@ const Background = ({ children }: { children?: ReactNode }) => {
         fill="#D94F49"
         opacity="0.756878807"
         style={{
-          animation: `star-flash ${Random(2, 4)}s infinite`,
-          animationDelay: Random(0, 3) + "s"
+          animation: `star-flash ${Random(2, 4)}s ${Random(0, 5) + "s"} infinite`
         }}
         weight={Random(5, 15)}
         center={i}
