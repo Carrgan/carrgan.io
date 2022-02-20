@@ -95,6 +95,24 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   }
 }
 
+@keyframes meteor-small-r {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(110%, 70%);
+  }
+}
+
+@keyframes meteor-small-l {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-110%, 70%);
+  }
+}
+
 @keyframes meteor-r {
   0% {
     transform: translate(0, 0);

@@ -10,19 +10,32 @@ const Background = ({ children }: { children?: ReactNode }) => {
   const [currentWidth, currentHeight] = useScreenSize();
   const [meteor, setMeteor] = useState<ReactNode>();
 
+  const meteorTime = [1000, 8000];
+
   useEffect(() => {
     const timeOut = setTimeout(() => {
       const x = Random(0, currentWidth);
       if (x > currentWidth / 2) {
-        setMeteor(<Meteor x={x} left={true} style={{ animation: "meteor-l 3s" }} />);
+        setMeteor(
+          <Meteor
+            x={x}
+            left={true}
+            style={{ animation: currentWidth < 600 ? "meteor-small-l 3s" : "meteor-l 3s" }}
+          />
+        );
       } else {
-        setMeteor(<Meteor x={x} style={{ animation: "meteor-r 3s" }} />);
+        setMeteor(
+          <Meteor
+            x={x}
+            style={{ animation: currentWidth < 600 ? "meteor-small-r 3s" : "meteor-r 3s" }}
+          />
+        );
       }
-    }, Random(5000, 20000));
+    }, Random(meteorTime[0], meteorTime[1]));
     return () => {
       clearTimeout(timeOut);
     };
-  }, [meteor]);
+  }, [currentWidth, meteor]);
 
   const renderCircle = () => {
     const number = 60;

@@ -3,13 +3,13 @@ import useScreenSize from "@site/src/screenHelper";
 import { Random } from "@site/src/components/hello/helper";
 
 const Logo = () => {
-  // const [, currentHeight] = useScreenSize();
-  const [, currentHeight] = [2222, 800];
+  const [currentWidth] = useScreenSize();
+  const logoWidth = currentWidth < 600 ? 450 : 1000;
   return (
     <div>
       <svg
-        width={currentHeight * 0.75}
-        height={currentHeight * 0.7}
+        width={logoWidth * 0.75}
+        height={logoWidth * 0.7}
         viewBox="0 0 488 323"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
