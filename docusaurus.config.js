@@ -17,10 +17,12 @@ const config = {
   favicon: "img/logo.svg",
   organizationName: "carrgan", // Usually your GitHub org/user name.
   projectName: "carrgan.github.io", // Usually your repo name.
+  deploymentBranch: "main",
 
   i18n: {
     defaultLocale: "zh-cn",
-    locales: ["en", "zh-cn"]
+    // locales: ["en", "zh-cn"]
+    locales: ["zh-cn"]
   },
 
   presets: [
@@ -62,6 +64,10 @@ const config = {
             label: "Notes"
           },
           {
+            to: "/blog",
+            label: "Blog"
+          },
+          {
             type: "localeDropdown",
             position: "right"
           },
@@ -69,6 +75,11 @@ const config = {
             href: "https://github.com/Carrgan",
             label: "GitHub",
             position: "right"
+          },
+          {
+            label: "v2.0(2022.4.20)",
+            position: "right",
+            to: "/"
           }
         ]
       },
@@ -76,11 +87,11 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "notes",
+            title: "Notes",
             items: [
               {
                 label: "Notes",
-                to: "/Notes/intro"
+                to: "/Notes/"
               }
             ]
           },
@@ -96,7 +107,7 @@ const config = {
                 href: "https://music.163.com/#/artist?id=12236222"
               },
               {
-                label: "BiLiBiLi",
+                label: "Bilibili",
                 href: "https://space.bilibili.com/72913460"
               }
             ]
@@ -104,10 +115,10 @@ const config = {
           {
             title: "More",
             items: [
-              // {
-              //   label: 'Blog',
-              //   to: '/blog',
-              // },
+              {
+                label: "Blog",
+                to: "/blog"
+              },
               {
                 label: "GitHub",
                 href: "https://github.com/Carrgan"
@@ -115,11 +126,29 @@ const config = {
               {
                 label: "CSDN",
                 href: "https://blog.csdn.net/Carrgan"
+              },
+              {
+                label: "Docusaurus",
+                href: "https://docusaurus.io/"
+              },
+              {
+                label: "AnimeJS",
+                href: "https://animejs.com/"
+              },
+              {
+                label: "React-Anime",
+                href: "https://github.com/plus1tv/react-anime"
               }
             ]
           }
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Carrgan Universe, Inc.`
+        logo: {
+          alt: "Carrgan Universe Logo",
+          src: "img/logo-with-text.svg",
+          width: 160,
+          height: 51
+        },
+        copyright: `Copyright © ${new Date().getFullYear()} Carrgan. All Rights Reserved`
       },
       prism: {
         theme: lightCodeTheme,
@@ -128,22 +157,9 @@ const config = {
       colorMode: {
         defaultMode: "dark",
         disableSwitch: true,
-        respectPrefersColorScheme: false,
-        switchConfig: {
-          darkIcon: "🌙",
-          lightIcon: "\u2600",
-          // React 内联样式对象
-          // 参见 https://zh-hans.reactjs.org/docs/dom-elements.html#style
-          darkIconStyle: {
-            marginLeft: "2px"
-          },
-          lightIconStyle: {
-            marginLeft: "1px"
-          }
-        }
+        respectPrefersColorScheme: false
       }
     }),
-
   plugins: [
     [
       "@docusaurus/plugin-content-docs",

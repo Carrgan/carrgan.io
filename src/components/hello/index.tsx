@@ -1,7 +1,7 @@
 import React from "react";
 import Background from "@site/src/components/hello/background";
 import Style from "./hello.module.css";
-import Logo from "@site/src/components/hello/logo";
+import Plants from "@site/src/components/hello/plants";
 
 const Hello = () => {
   return (
@@ -15,7 +15,7 @@ const Hello = () => {
             </div>
           </div>
           <div className={Style.logoContainer}>
-            <Logo />
+            <Plants />
           </div>
         </div>
       </Background>

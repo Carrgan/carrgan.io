@@ -40,6 +40,30 @@
 }
 
 
+@media screen and (max-width: 390px) {
+    .layoutContainer h1 {
+        font-size: 30px;
+        font-weight: 400;
+    }
+
+    .layoutContainer h4 {
+        font-size: 10px;
+        font-weight: 300;
+    }
+}
+
+@media screen and (min-width: 390px) and (max-width: 720px) {
+    .layoutContainer h1 {
+        font-size: 50px;
+        font-weight: 400;
+    }
+
+    .layoutContainer h4 {
+        font-size: 12px;
+        font-weight: 300;
+    }
+}
+
 @media screen and (max-width: 1200px) {
     .layoutContainer {
         width: 100%;
@@ -52,13 +76,7 @@
                       ". . ."
                       "c c .";
     }
-    .layoutContainer h1 {
-        font-size: 50px;
-        font-weight: 400;
-    }
-
-    .layoutContainer h4 {
-        font-size: 12px;
-        font-weight: 300;
+    .textContainer{
+        align-items: flex-end;
     }
 }

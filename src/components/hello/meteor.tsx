@@ -2,7 +2,7 @@ import React, { CSSProperties } from "react";
 
 const Meteor = ({ style, x, left }: { style?: CSSProperties; x: number; left?: boolean }) => {
   return (
-    <>
+    <g>
       <defs>
         <radialGradient
           cx="50%"
@@ -17,7 +17,7 @@ const Meteor = ({ style, x, left }: { style?: CSSProperties; x: number; left?: b
           <stop stopColor="#FF00FE" stopOpacity="0.528025807" offset="100%" />
         </radialGradient>
         <path
-          style={{ transform: left ? "rotate(0.6turn)" : "rotate(0.4turn)" }}
+          style={{ transform: left ? "rotate(225deg)" : "rotate(135deg)" }}
           d="M5,2 C6.1045695,2 7,3.11928813 7,4.5 L7,4.5 L5,67.6459129 L3.00620557,4.69839506 C3.0020944,4.63293953 3,4.5667755 3,4.5 C3,3.11928813 3.8954305,2 5,2 Z"
           id="path-k8snj-eejo-2"
         />
@@ -61,7 +61,7 @@ const Meteor = ({ style, x, left }: { style?: CSSProperties; x: number; left?: b
           />
         </g>
       </g>
-    </>
+    </g>
   );
 };
 

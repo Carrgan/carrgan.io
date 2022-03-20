@@ -4,31 +4,46 @@ import Start from "@site/src/components/hello/start";
 import { Random } from "@site/src/components/hello/helper";
 import useScreenSize from "@site/src/screenHelper";
 import Meteor from "@site/src/components/hello/meteor";
+import Anime from "react-anime";
+import { isPhone } from "@site/src/browserHelper";
 
 const Background = ({ children }: { children?: ReactNode }) => {
   const container = createRef<HTMLDivElement>();
   const [currentWidth, currentHeight] = useScreenSize();
   const [meteor, setMeteor] = useState<ReactNode>();
 
-  const meteorTime = [1000, 8000];
+  const meteorTime = [1500, 8000];
 
   useEffect(() => {
+    const translate = (currentWidth > currentHeight ? currentHeight : currentWidth) + 70;
     const timeOut = setTimeout(() => {
       const x = Random(0, currentWidth);
+      setMeteor(undefined);
       if (x > currentWidth / 2) {
         setMeteor(
-          <Meteor
-            x={x}
-            left={true}
-            style={{ animation: currentWidth < 600 ? "meteor-small-l 3s" : "meteor-l 3s" }}
-          />
+          <Anime
+            component={"g"}
+            easing={"linear"}
+            svg
+            translateX={-translate}
+            duration={1500}
+            translateY={translate}
+          >
+            <Meteor x={x} left={true} />
+          </Anime>
         );
       } else {
         setMeteor(
-          <Meteor
-            x={x}
-            style={{ animation: currentWidth < 600 ? "meteor-small-r 3s" : "meteor-r 3s" }}
-          />
+          <Anime
+            component={"g"}
+            easing={"linear"}
+            svg
+            translateX={translate}
+            duration={1500}
+            translateY={translate}
+          >
+            <Meteor x={x} />
+          </Anime>
         );
       }
     }, Random(meteorTime[0], meteorTime[1]));
@@ -57,18 +72,19 @@ const Background = ({ children }: { children?: ReactNode }) => {
         ]);
     }
     return coordinates.map((i, index) => (
-      <circle
-        id="Oval"
-        key={`Circle-${index}`}
-        fill="#ffff"
-        style={{
-          opacity: 0,
-          animation: `emerge ${Random(3, 8)}s ${Random(0, 5) + "s"} infinite`
-        }}
-        cx={i[0]}
-        cy={i[1]}
-        r={Random(2, 4)}
-      />
+      <Anime
+        key={`Circle-${index}-${i[0]}-${i[1]}`}
+        easing="cubicBezier(.5, .05, .1, .3)"
+        direction="alternate"
+        svg
+        opacity={[0, 1]}
+        loop={true}
+        delay={Random(0, 5) * 1000}
+        duration={Random(2, 5) * 1000}
+        component={"g"}
+      >
+        <circle id="Oval" fill="#ffff" cx={i[0]} cy={i[1]} r={Random(2, 4)} />
+      </Anime>
     ));
   };
   const renderStart = () => {
@@ -84,22 +100,34 @@ const Background = ({ children }: { children?: ReactNode }) => {
         ]);
     }
     return coordinates.map((i, index) => (
-      <Start
-        id={`Start-${index}`}
+      <Anime
         key={`Start-${index}`}
-        fill="#D94F49"
-        opacity="0.756878807"
-        style={{
-          animation: `star-flash ${Random(2, 4)}s ${Random(0, 5) + "s"} infinite`
-        }}
-        weight={Random(5, 15)}
-        center={i}
-      />
+        easing="linear"
+        direction="alternate"
+        svg
+        opacity={[0.8, 1]}
+        loop={true}
+        duration={Random(1, 3) * 1000}
+        component={"g"}
+      >
+        <Start
+          id={`Start-${index}`}
+          fill="#D94F49"
+          opacity="0.756878807"
+          weight={Random(5, 15)}
+          center={i}
+        />
+      </Anime>
     ));
   };
 
-  const Starts = useMemo(renderStart, [currentWidth, currentHeight]);
-  const Circles = useMemo(renderCircle, [currentWidth, currentHeight]);
+  // Touch Screen scroll bug ifx
+  const Starts = isPhone()
+    ? useMemo(renderCircle, [])
+    : useMemo(renderStart, [currentWidth, currentHeight]);
+  const Circles = isPhone()
+    ? useMemo(renderCircle, [])
+    : useMemo(renderCircle, [currentWidth, currentHeight]);
 
   return (
     <div className={Style.mainContainer} ref={container} style={{ height: currentHeight }}>
