@@ -122,12 +122,15 @@ const Background = ({ children }: { children?: ReactNode }) => {
   };
 
   // Touch Screen scroll bug ifx
-  const Starts = isPhone()
-    ? useMemo(renderCircle, [])
-    : useMemo(renderStart, [currentWidth, currentHeight]);
-  const Circles = isPhone()
-    ? useMemo(renderCircle, [])
-    : useMemo(renderCircle, [currentWidth, currentHeight]);
+  // const Starts = isPhone()
+  //   ? useMemo(renderCircle, [])
+  //   : useMemo(renderStart, [currentWidth, currentHeight]);
+  // const Circles = isPhone()
+  //   ? useMemo(renderCircle, [])
+  //   : useMemo(renderCircle, [currentWidth, currentHeight]);
+
+  const Starts = useMemo(renderStart, [currentWidth, currentHeight]);
+  const Circles = useMemo(renderCircle, [currentWidth, currentHeight]);
 
   return (
     <div className={Style.mainContainer} ref={container} style={{ height: currentHeight }}>

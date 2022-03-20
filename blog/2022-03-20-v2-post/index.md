@@ -25,4 +25,3 @@ V1用[Pmndrs](https://docs.pmnd.rs/)为React封装的[Three.js](https://threejs.
 
 **在V2.1版本中打算处理星星和星球的点击事件**
 
-
