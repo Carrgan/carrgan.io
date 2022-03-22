@@ -1,0 +1,273 @@
+---
+slug: react/hook/advance-encapsulation
+title: 用Hook做高级封装
+authors: carrgan
+tags: [Front End, React]
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from "@theme/CodeBlock";
+
+在代码中有大量相同的组件引用和状态引用场景的情况下，利用自定义Hook对功能进行统一封装，有利于代码复用和维护。
+
+例如在不同的三个视图中都存在表格，如果我们都需要对表格的每一列排序并构建Filter，就会存在大量的代码耦合情况。
+
+采用传统的构建结构我们需要在每一个视图中记录一个Filter状态。
+
+
+<Tabs>
+  <TabItem value="ViewA" label="View A" default>
+    <CodeBlock language="jsx" title="/src/view/viewA.jsx">
+      {`const [editedFilter, setEditedFilter] = useState<IViewADefaultFilter>(defaultFilter);
+const [editedSort, setEditedSort] = useState<IViewADefaultSort>(defaultSort);`}
+    </CodeBlock>
+  </TabItem>
+  <TabItem value="ViewB" label="View B">
+    <CodeBlock language="jsx" title="/src/view/viewB.jsx">
+      {`const [editedFilter, setEditedFilter] = useState<IViewBDefaultFilter>(defaultFilter);
+const [editedSort, setEditedSort] = useState<IViewBDefaultSort>(defaultSort);`}
+    </CodeBlock>
+  </TabItem>
+  <TabItem value="ViewC" label="View C">
+    <CodeBlock language="jsx" title="/src/view/viewC.jsx">
+      {`const [editedFilter, setEditedFilter] = useState<IViewCDefaultFilter>(defaultFilter);
+const [editedSort, setEditedSort] = useState<IViewCDefaultSort>(defaultSort);`}
+    </CodeBlock>
+  </TabItem>
+</Tabs>
+
+在每一个View中，重复对每一列引用Filter组件
+
+<Tabs>
+  <TabItem value="ViewA" label="View A" default>
+    <CodeBlock language="jsx" title="/src/view/viewA.jsx">
+      {`<>
+  Name
+  <InputDropdownFilter
+      value={editedFilter.name}
+      onValueChange={handelFilterChange("name")}
+      onSortChange={handelSortChange("name")}
+      sortStatus={editedSort.columnsA}
+      onApply={handelFilterApply}
+      onClean={() => setEditedFilter(f => ({ ...f, [filterKey]: "" }))}
+  />
+  Birthday
+  <TimeDropdownFilter
+    dateString={editedFilter.birthday}
+    onValueChange={handelFilterChange("birthday")}
+    onSortChange={handelSortChange("birthday")}
+    sortStatus={editedSort.birthday}
+    onApply={handelFilterApply}
+    onClean={() => setEditedFilter(f => ({ ...f, [filterKey]: { from: "", to: "" } }))}
+  />
+</>
+`}
+    </CodeBlock>
+  </TabItem>
+  <TabItem value="ViewB" label="View B">
+    <CodeBlock language="jsx" title="/src/view/viewB.jsx">
+      {`<>
+  School
+  <InputDropdownFilter
+      value={editedFilter.school}
+      onValueChange={handelFilterChange("school")}
+      onSortChange={handelSortChange("school")}
+      sortStatus={editedSort.school}
+      onApply={handelFilterApply}
+      onClean={() => setEditedFilter(f => ({ ...f, [filterKey]: "" }))}
+  />
+  Teacher
+  <ListDropdownFilter
+      selectedItem={editedFilter.teacher}
+      item={item}
+      onValueChange={handelFilterChange("teacher")}
+      onSortChange={handelSortChange("teacher")}
+      sortStatus={editedSort.teacher}
+      onApply={handelFilterApply}
+      onClean={() => setEditedFilter(f => ({ ...f, [filterKey]: defaultFilter[filterKey] }))}
+  />
+</>`}
+    </CodeBlock>
+  </TabItem>
+  <TabItem value="ViewC" label="View C">
+    <CodeBlock language="jsx" title="/src/view/viewC.jsx">
+      {`<>
+  Onboard Day
+  <TimeDropdownFilter
+    dateString={editedFilter.onboardDay}
+    onValueChange={handelFilterChange("onboardDay")}
+    onSortChange={handelSortChange("onboardDay")}
+    sortStatus={editedSort.onboardDay}
+    onApply={handelFilterApply}
+    onClean={() => setEditedFilter(f => ({ ...f, [filterKey]: { from: "", to: "" } }))}
+  />
+  Student
+  <ListDropdownFilter
+      selectedItem={editedFilter.student}
+      item={item}
+      onValueChange={handelFilterChange("student")}
+      onSortChange={handelSortChange("student")}
+      sortStatus={editedSort.student}
+      onApply={handelFilterApply}
+      onClean={() => setEditedFilter(f => ({ ...f, [filterKey]: defaultFilter[filterKey] }))}
+  />
+</>`}
+    </CodeBlock>
+  </TabItem>
+</Tabs>
+
+可见在ViewA、ViewB、ViewC中有90%的代码都是相似的，唯一不同的就是列名，还有每一列的顺序和类型。
+
+整理每个组件的类型后，构建高级Hook来封装状态，并统一暴露方法。
+
+```typescript jsx title="src/component/helper.tsx"
+export const useDropdownFilter = <
+  IDefaultFilter extends { [key: string]: string | IDateString | IListBuilderItem[] },
+  IDefaultSort extends { [key: string]: ISortStatus }
+>(
+  defaultFilter: IDefaultFilter,
+  defaultSort: IDefaultSort,
+  handelFilterApply: () => void
+) => {
+  const [editedFilter, setEditedFilter] = useState<IDefaultFilter>(defaultFilter);
+  const [editedSort, setEditedSort] = useState<IDefaultSort>(defaultSort);
+  const handelFilterChange =
+    (name: keyof IDefaultFilter) => (value: string | IDateString | IListBuilderItem[]) => {
+      setEditedFilter(f => ({ ...f, [name]: value }));
+    };
+
+  const handelSortChange = (name: keyof IDefaultSort) => (value: ISortStatus) => {
+    setEditedSort(f => ({ ...f, [name]: value }));
+  };
+
+  const inputDropdownFilter = (
+    filterKey: keyof IDefaultFilter,
+    label: string,
+    position?: "left" | "right" | undefined
+  ) => (
+    <>
+      {label}
+      <InputDropdownFilter
+        position={position}
+        value={editedFilter[filterKey] as string}
+        onValueChange={handelFilterChange(filterKey)}
+        onSortChange={handelSortChange(filterKey as keyof IDefaultSort)}
+        sortStatus={editedSort[filterKey as keyof IDefaultSort]}
+        onApply={handelFilterApply}
+        onClean={() => setEditedFilter(f => ({ ...f, [filterKey]: "" }))}
+      />
+    </>
+  );
+
+  const timeDropdownFilter = (filterKey: keyof IDefaultFilter, label: string) => (
+    <>
+      {label}
+      <TimeDropdownFilter
+        dateString={editedFilter[filterKey] as IDateString}
+        onValueChange={handelFilterChange(filterKey)}
+        onSortChange={handelSortChange(filterKey as keyof IDefaultSort)}
+        sortStatus={editedSort[filterKey as keyof IDefaultSort]}
+        onApply={handelFilterApply}
+        onClean={() => setEditedFilter(f => ({ ...f, [filterKey]: { from: "", to: "" } }))}
+      />
+    </>
+  );
+
+  const listDropdownFilter = (
+    filterKey: keyof IDefaultFilter,
+    label: string,
+    item: IListBuilderItem[]
+  ) => (
+    <>
+      {label}
+      <ListDropdownFilter
+        selectedItem={editedFilter[filterKey] as IListBuilderItem[]}
+        item={item}
+        onValueChange={handelFilterChange(filterKey)}
+        onSortChange={handelSortChange(filterKey as keyof IDefaultSort)}
+        sortStatus={editedSort[filterKey as keyof IDefaultSort]}
+        onApply={handelFilterApply}
+        onClean={() => setEditedFilter(f => ({ ...f, [filterKey]: defaultFilter[filterKey] }))}
+      />
+    </>
+  );
+
+  return {
+    inputDropdownFilter,
+    timeDropdownFilter,
+    listDropdownFilter,
+    editedFilter,
+    editedSort
+  };
+};
+
+```
+
+现在在每一个View中只需要应用次Hook并调用合适的方法渲染Filter就可以了
+
+
+
+<Tabs>
+  <TabItem value="ViewA" label="View A" default>
+    <CodeBlock language="jsx" title="/src/view/viewA.jsx">
+      {`const { editedFilter, editedSort, inputDropdownFilter, timeDropdownFilter } =
+  useDropdownFilter(
+    {
+      name: "",
+      birthday: { from: "", to: "" }
+    },
+    filterInit<ISorts>(Object.keys(EViewAFilterKey), undefined),
+    handelFilterApply
+);
+return (
+  <>
+    {inputDropdownFilter("name", "Name"}
+    {timeDropdownFilter("birthDay", "Name"}
+  </>
+)
+`}
+    </CodeBlock>
+  </TabItem>
+  <TabItem value="ViewB" label="View B">
+    <CodeBlock language="jsx" title="/src/view/viewB.jsx">
+      {`const { editedFilter, editedSort, inputDropdownFilter, listDropdownFilter } =
+  useDropdownFilter(
+    {
+      school: "",
+      teacher: teacherItems
+    },
+    filterInit<ISorts>(Object.keys(EViewBFilterKey), undefined),
+    handelFilterApply
+);
+return (
+  <>
+    {inputDropdownFilter("school", "School"}
+    {listDropdownFilter("teacher", "Teacher", teacherItems}
+  </>
+)
+`}
+    </CodeBlock>
+  </TabItem>
+  <TabItem value="ViewC" label="View C">
+    <CodeBlock language="jsx" title="/src/view/viewC.jsx">
+      {`const { editedFilter, editedSort, timeDropdownFilter, listDropdownFilter } =
+  useDropdownFilter(
+    {
+      onboardDay: { from: "", to: "" },
+      student: StudentItems
+    },
+    filterInit<ISorts>(Object.keys(EViewCFilterKey), undefined),
+    handelFilterApply
+);
+return (
+  <>
+    {timeDropdownFilter("onboardDay", "OnboardDay"}
+    {listDropdownFilter("student", "Student", StudentItems}
+  </>
+)
+`}
+    </CodeBlock>
+  </TabItem>
+</Tabs>
+
+减少了非常多的代码量，代码也更加利于读懂，维护起来也只用维护hook就可以了

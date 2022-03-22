@@ -34,7 +34,10 @@ const config = {
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl: "https://github.com/facebook/docusaurus/edit/main/website/blog/"
+          // editUrl: "https://github.com/facebook/docusaurus/edit/main/website/blog/"
+          readingTime: ({content, frontMatter, defaultReadingTime}) => {
+            return defaultReadingTime({ content, options: { wordsPerMinute: 300 }})
+          }
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css")
@@ -77,7 +80,7 @@ const config = {
             position: "right"
           },
           {
-            label: "v2.0(2022.4.20)",
+            label: "v2.0(2022.4.22)",
             position: "right",
             to: "/"
           }
