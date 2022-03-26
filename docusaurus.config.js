@@ -4,7 +4,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const darkCodeTheme = require("prism-react-renderer/themes/nightOwl");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -20,9 +20,9 @@ const config = {
   deploymentBranch: "main",
 
   i18n: {
-    defaultLocale: "zh-cn",
+    defaultLocale: "zh-Hans",
     // locales: ["en", "zh-cn"]
-    locales: ["zh-cn"]
+    locales: ["zh-Hans"]
   },
 
   presets: [
@@ -35,8 +35,10 @@ const config = {
           showReadingTime: true,
           // Please change this to your repo.
           // editUrl: "https://github.com/facebook/docusaurus/edit/main/website/blog/"
-          readingTime: ({content, frontMatter, defaultReadingTime}) => {
-            return defaultReadingTime({ content, options: { wordsPerMinute: 300 }})
+          readingTime: ({ content, frontMatter, defaultReadingTime }) => {
+            return frontMatter["reading_time"]
+              ? frontMatter["reading_time"]
+              : defaultReadingTime({ content, options: { wordsPerMinute: 500 } });
           }
         },
         theme: {
