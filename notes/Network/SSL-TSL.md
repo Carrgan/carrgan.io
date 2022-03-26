@@ -16,7 +16,10 @@ TLS协议可以服务于HTTP，SMTP及POP3客户端，可以携带证书进行�
 
 协议加密的过程如下：
 
-<Video src="https://f.video.weibocdn.com/o0/M3dYGuVXlx07UMSOhUiQ01041200607s0E010.mp4?label=mp4_1080p&template=1920x1080.25.0&media_id=4751376396517406&tp=8x8A3El:YTkl0eM8&us=0&ori=1&bf=4&ot=h&lp=00002njT6N&ps=mZ6WB&uid=3VOy30&ab=3915-g1,6377-g0,1192-g0,1191-g0,1046-g2,1258-g0,3601-g19&Expires=1648312076&ssig=8vt3tHYNFa&KID=unistore,video" />
+<Video 
+  src="https://f.video.weibocdn.com/o0/M3dYGuVXlx07UMSOhUiQ01041200607s0E010.mp4?label=mp4_1080p&template=1920x1080.25.0&media_id=4751376396517406&tp=8x8A3El:YTkl0eM8&us=0&ori=1&bf=4&ot=h&lp=00002njT6N&ps=mZ6WB&uid=3VOy30&ab=3915-g1,6377-g0,1192-g0,1191-g0,1046-g2,1258-g0,3601-g19&Expires=1648312076&ssig=8vt3tHYNFa&KID=unistore,video"
+  bg="http://wx2.sinaimg.cn/orj480/d6bccae2ly1h0nl6mkzs9j21hc0u041j.jpg"
+/>
 
 ## CA证书
 

@@ -3,7 +3,7 @@ import Play from "@site/static/img/icon/play.svg";
 import Styles from "./video.module.scss";
 import { isPhone } from "@site/src/browserHelper";
 
-const Video = ({ src }: { src: string }) => {
+const Video = ({ src, bg }: { src: string; bg: string }) => {
   const videoRef = createRef<HTMLVideoElement>();
   const [isPlay, setIsPlay] = useState(false);
   const [showControls, setShowControls] = useState(false);
@@ -17,6 +17,7 @@ const Video = ({ src }: { src: string }) => {
         onMouseEnter={() => isPlay && setShowControls(true)}
         onMouseOut={() => setShowControls(false)}
         className={Styles.videoContainer}
+        style={{ backgroundImage: `url("${bg}")` }}
       >
         <video
           onClick={() => {

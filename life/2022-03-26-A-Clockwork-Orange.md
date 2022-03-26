@@ -23,4 +23,7 @@ When you leave, you’ll have no worries. We’ll see to everything.A good job o
 
 We always help our friends, don’t we?
 
-<Video src="//f.video.weibocdn.com/0018WpLigx07DENg0sFO010412006h9z0E010.mp4?label=mp4_720p&template=898x540.25.0&trans_finger=721584770189073627c6ee9d880087b3&media_id=4510068796751875&tp=8x8A3El:YTkl0eM8&us=0&ori=1&bf=4&ot=h&lp=00002njT6N&ps=mZ6WB&uid=3VOy30&ab=3915-g1&Expires=1648313692&ssig=4qkUHhwGVW&KID=unistore,video" />
+<Video
+  src="//f.video.weibocdn.com/0018WpLigx07DENg0sFO010412006h9z0E010.mp4?label=mp4_720p&template=898x540.25.0&trans_finger=721584770189073627c6ee9d880087b3&media_id=4510068796751875&tp=8x8A3El:YTkl0eM8&us=0&ori=1&bf=4&ot=h&lp=00002njT6N&ps=mZ6WB&uid=3VOy30&ab=3915-g1&Expires=1648313692&ssig=4qkUHhwGVW&KID=unistore,video"
+  bg="http://wx1.sinaimg.cn/orj480/d6bccae2gy1gf9rdps2szj20oy0f0glu.jpg"
+/>
