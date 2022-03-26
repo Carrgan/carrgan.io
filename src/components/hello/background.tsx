@@ -5,7 +5,6 @@ import { Random } from "@site/src/components/hello/helper";
 import useScreenSize from "@site/src/screenHelper";
 import Meteor from "@site/src/components/hello/meteor";
 import Anime from "react-anime";
-import { isPhone } from "@site/src/browserHelper";
 
 const Background = ({ children }: { children?: ReactNode }) => {
   const container = createRef<HTMLDivElement>();
