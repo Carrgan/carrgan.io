@@ -19,7 +19,7 @@ You see, we are looking after your interests.
 
 We are interested in you.
 
-When you leave, you’ll have no worries. We’ll see to everything.A good job on a good salary.
+When you leave, you’ll have no worries. We’ll see to everything. A good job on a good salary.
 
 We always help our friends, don’t we?
 
