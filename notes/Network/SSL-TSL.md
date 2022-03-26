@@ -4,7 +4,7 @@ sidebar_position: 1
 title: SSL/TSL
 ---
 
-import BLoader from "@site/src/components/video/b-loader"
+import Video from "@site/src/components/video/video"
 
 # SSL/TSL与CA(X.509)证书
 
@@ -16,7 +16,7 @@ TLS协议可以服务于HTTP，SMTP及POP3客户端，可以携带证书进行�
 
 协议加密的过程如下：
 
-<BLoader bv="BV12L4y1j7DL" heightQuality={true} />
+<Video src="https://f.video.weibocdn.com/o0/M3dYGuVXlx07UMSOhUiQ01041200607s0E010.mp4?label=mp4_1080p&template=1920x1080.25.0&media_id=4751376396517406&tp=8x8A3El:YTkl0eM8&us=0&ori=1&bf=4&ot=h&lp=00002njT6N&ps=mZ6WB&uid=3VOy30&ab=3915-g1,6377-g0,1192-g0,1191-g0,1046-g2,1258-g0,3601-g19&Expires=1648312076&ssig=8vt3tHYNFa&KID=unistore,video" />
 
 ## CA证书
 

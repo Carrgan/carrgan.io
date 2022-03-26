@@ -70,7 +70,11 @@ const config = {
           },
           {
             to: "/blog",
-            label: "Blog"
+            label: "Tech Blog"
+          },
+          {
+            to: "/life",
+            label: "Life"
           },
           {
             type: "localeDropdown",
@@ -97,6 +101,10 @@ const config = {
               {
                 label: "Notes",
                 to: "/Notes/"
+              },
+              {
+                label: "SSL/TSL",
+                to: "/notes/Network/SSL-TSL"
               }
             ]
           },
@@ -121,8 +129,12 @@ const config = {
             title: "More",
             items: [
               {
-                label: "Blog",
+                label: "Tech Blog",
                 to: "/blog"
+              },
+              {
+                label: "Life",
+                to: "/life"
               },
               {
                 label: "GitHub",
@@ -166,6 +178,7 @@ const config = {
       }
     }),
   plugins: [
+    "docusaurus-plugin-sass",
     [
       "@docusaurus/plugin-content-docs",
       {
@@ -173,6 +186,24 @@ const config = {
         path: "notes",
         routeBasePath: "notes",
         sidebarPath: require.resolve("./sidebars.js")
+      }
+    ],
+    [
+      "@docusaurus/plugin-content-blog",
+      {
+        /**
+         * Required for any multi-instance plugin
+         */
+        id: "life",
+        /**
+         * URL route for the blog section of your site.
+         * *DO NOT* include a trailing slash.
+         */
+        routeBasePath: "life",
+        /**
+         * Path to data on filesystem relative to site dir.
+         */
+        path: "./life"
       }
     ]
   ]
