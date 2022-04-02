@@ -1,5 +1,5 @@
 ---
-slug: long-blog-post
+slug: v2/post
 title: V2 Post
 authors: carrgan
 tags: [New Version]

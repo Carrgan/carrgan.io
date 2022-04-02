@@ -4,7 +4,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const darkCodeTheme = require("prism-react-renderer/themes/nightOwl");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -20,9 +20,9 @@ const config = {
   deploymentBranch: "main",
 
   i18n: {
-    defaultLocale: "zh-cn",
+    defaultLocale: "zh-Hans",
     // locales: ["en", "zh-cn"]
-    locales: ["zh-cn"]
+    locales: ["zh-Hans"]
   },
 
   presets: [
@@ -35,8 +35,10 @@ const config = {
           showReadingTime: true,
           // Please change this to your repo.
           // editUrl: "https://github.com/facebook/docusaurus/edit/main/website/blog/"
-          readingTime: ({content, frontMatter, defaultReadingTime}) => {
-            return defaultReadingTime({ content, options: { wordsPerMinute: 300 }})
+          readingTime: ({ content, frontMatter, defaultReadingTime }) => {
+            return frontMatter["reading_time"]
+              ? frontMatter["reading_time"]
+              : defaultReadingTime({ content, options: { wordsPerMinute: 500 } });
           }
         },
         theme: {
@@ -68,7 +70,11 @@ const config = {
           },
           {
             to: "/blog",
-            label: "Blog"
+            label: "Tech Blog"
+          },
+          {
+            to: "/life",
+            label: "Life"
           },
           {
             type: "localeDropdown",
@@ -95,6 +101,10 @@ const config = {
               {
                 label: "Notes",
                 to: "/Notes/"
+              },
+              {
+                label: "SSL/TSL",
+                to: "/notes/Network/SSL-TSL"
               }
             ]
           },
@@ -119,8 +129,12 @@ const config = {
             title: "More",
             items: [
               {
-                label: "Blog",
+                label: "Tech Blog",
                 to: "/blog"
+              },
+              {
+                label: "Life",
+                to: "/life"
               },
               {
                 label: "GitHub",
@@ -164,6 +178,7 @@ const config = {
       }
     }),
   plugins: [
+    "docusaurus-plugin-sass",
     [
       "@docusaurus/plugin-content-docs",
       {
@@ -171,6 +186,24 @@ const config = {
         path: "notes",
         routeBasePath: "notes",
         sidebarPath: require.resolve("./sidebars.js")
+      }
+    ],
+    [
+      "@docusaurus/plugin-content-blog",
+      {
+        /**
+         * Required for any multi-instance plugin
+         */
+        id: "life",
+        /**
+         * URL route for the blog section of your site.
+         * *DO NOT* include a trailing slash.
+         */
+        routeBasePath: "life",
+        /**
+         * Path to data on filesystem relative to site dir.
+         */
+        path: "./life"
       }
     ]
   ]

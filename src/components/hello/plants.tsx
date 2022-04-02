@@ -1,15 +1,12 @@
 import React, { useMemo } from "react";
-import useScreenSize from "@site/src/screenHelper";
 import { BrowserType, getBrowserType } from "@site/src/browserHelper";
 import Anime from "react-anime";
 
-const Plants = () => {
-  const [currentWidth, currentHeight] = useScreenSize();
+const Plants = ({ logoWidth, speed }: { logoWidth: number; speed?: number }) => {
   const isSafari = useMemo(() => getBrowserType() === BrowserType.Safari, []);
   // const runAnimation = (animation: string) => (isSafari ? undefined : animation);
   const renderShadow = () => (isSafari ? undefined : "url(#filter-wwl4--iet0-1)");
   const runAnimation = (animation: string) => animation;
-  const logoWidth = currentWidth > currentHeight ? currentHeight : currentWidth * 0.96;
   return (
     <div>
       <svg
@@ -140,7 +137,7 @@ const Plants = () => {
               component={"g"}
               easing="easeInOutCubic"
               direction="alternate"
-              duration={3000}
+              duration={speed ? speed : 3000}
               loop
               transform={"translate(10, 25)"}
             >
@@ -194,7 +191,7 @@ const Plants = () => {
                   component={"g"}
                   easing="easeInOutBack"
                   direction="alternate"
-                  duration={3000}
+                  duration={speed ? speed : 3000}
                   // delay={400}
                   loop
                   transform={"translate(0, 10)"}
@@ -215,7 +212,7 @@ const Plants = () => {
                   component={"g"}
                   easing="easeInOutBack"
                   direction="alternate"
-                  duration={3000}
+                  duration={speed ? speed : 3000}
                   loop
                   transform={"translate(2.5, 5)"}
                 >

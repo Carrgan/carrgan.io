@@ -3,6 +3,7 @@ slug: react/hook/advance-encapsulation
 title: 用Hook做高级封装
 authors: carrgan
 tags: [Front End, React]
+reading_time: 8
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -17,22 +18,28 @@ import CodeBlock from "@theme/CodeBlock";
 
 <Tabs>
   <TabItem value="ViewA" label="View A" default>
-    <CodeBlock language="jsx" title="/src/view/viewA.jsx">
-      {`const [editedFilter, setEditedFilter] = useState<IViewADefaultFilter>(defaultFilter);
-const [editedSort, setEditedSort] = useState<IViewADefaultSort>(defaultSort);`}
-    </CodeBlock>
+
+``` typescript jsx
+const [editedFilter, setEditedFilter] = useState<IViewADefaultFilter>(defaultFilter);
+const [editedSort, setEditedSort] = useState<IViewADefaultSort>(defaultSort);
+```
+
   </TabItem>
   <TabItem value="ViewB" label="View B">
-    <CodeBlock language="jsx" title="/src/view/viewB.jsx">
-      {`const [editedFilter, setEditedFilter] = useState<IViewBDefaultFilter>(defaultFilter);
-const [editedSort, setEditedSort] = useState<IViewBDefaultSort>(defaultSort);`}
-    </CodeBlock>
+
+``` typescript jsx
+const [editedFilter, setEditedFilter] = useState<IViewBDefaultFilter>(defaultFilter);
+const [editedSort, setEditedSort] = useState<IViewBDefaultSort>(defaultSort);
+```
+
   </TabItem>
   <TabItem value="ViewC" label="View C">
-    <CodeBlock language="jsx" title="/src/view/viewC.jsx">
-      {`const [editedFilter, setEditedFilter] = useState<IViewCDefaultFilter>(defaultFilter);
-const [editedSort, setEditedSort] = useState<IViewCDefaultSort>(defaultSort);`}
-    </CodeBlock>
+
+``` typescript jsx
+const [editedFilter, setEditedFilter] = useState<IViewCDefaultFilter>(defaultFilter);
+const [editedSort, setEditedSort] = useState<IViewCDefaultSort>(defaultSort);
+```
+
   </TabItem>
 </Tabs>
 
@@ -120,6 +127,10 @@ const [editedSort, setEditedSort] = useState<IViewCDefaultSort>(defaultSort);`}
 
 整理每个组件的类型后，构建高级Hook来封装状态，并统一暴露方法。
 
+<details>
+  <summary>用Hook的实现方式</summary>
+  <div>
+
 ```typescript jsx title="src/component/helper.tsx"
 export const useDropdownFilter = <
   IDefaultFilter extends { [key: string]: string | IDateString | IListBuilderItem[] },
@@ -202,6 +213,11 @@ export const useDropdownFilter = <
 };
 
 ```
+
+  </div>
+</details>
+
+
 
 现在在每一个View中只需要应用次Hook并调用合适的方法渲染Filter就可以了
 
