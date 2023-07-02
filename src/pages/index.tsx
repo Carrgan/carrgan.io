@@ -1,17 +1,21 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import Layout from "@theme/Layout";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import Hello from "@site/src/components/hello";
 import BrowserOnly from "@docusaurus/BrowserOnly";
+import FullScreenLoader from "@site/src/components/common/FullScreenLoader";
+const Hello = lazy(() => import("@site/src/components/hello"));
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout
-      // title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
-    >
-      <BrowserOnly>{() => <Hello />}</BrowserOnly>
+    <Layout description="Description will go into a meta tag in <head />">
+      <BrowserOnly>
+        {() => (
+          <Suspense fallback={<FullScreenLoader />}>
+            <Hello />
+          </Suspense>
+        )}
+      </BrowserOnly>
     </Layout>
   );
 }

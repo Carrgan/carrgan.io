@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import CodeBlock from "@theme/CodeBlock";
-import { Button, LinearProgress, Slider } from "@mui/joy";
+import { Button, LinearProgress, Slider, useColorScheme } from "@mui/joy";
 import Style from "./random-password.module.scss";
 import NumberInput from "@site/src/components/common/NumberInput";
 import ChoiceChips, { IChoiceChipsItem } from "@site/src/components/common/ChoiceChips";
@@ -40,7 +40,7 @@ const RandomPassword = () => {
 
   const [password, setPassword] = useState<string>(
     getPassword(
-      characterConfig.map(i => i.value),
+      (DEFAULT_CHARACTER_CONFIG as IChoiceChipsItem[]).map(i => i.value),
       passwordLength
     )
   );

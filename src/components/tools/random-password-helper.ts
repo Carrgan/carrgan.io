@@ -5,6 +5,11 @@ interface ICharacterRange {
 
 type ICharacterType = "number" | "uppercase" | "lowercase" | "symbol";
 
+const UPPERCASE: ICharacterRange = { start: 65, end: 90 };
+const LOWERCASE: ICharacterRange = { start: 97, end: 122 };
+const NUMBER: ICharacterRange = { start: 48, end: 57 };
+const SYMBOL = "@#$%^&*";
+
 const getRandomIntInclusive = (min: number, max: number) => {
   // [min, max]
   min = Math.ceil(min);
@@ -15,10 +20,6 @@ const getRandomIntInclusive = (min: number, max: number) => {
 const getCharacter = (value: number) => String.fromCharCode(value);
 
 const getRandomCharacter = (type: ICharacterType) => {
-  const UPPERCASE: ICharacterRange = { start: 65, end: 90 };
-  const LOWERCASE: ICharacterRange = { start: 97, end: 122 };
-  const NUMBER: ICharacterRange = { start: 48, end: 57 };
-  const SYMBOL = "@#$%^&*";
   let code = 0;
   switch (type) {
     case "uppercase":
@@ -32,7 +33,7 @@ const getRandomCharacter = (type: ICharacterType) => {
       return getCharacter(code);
     case "symbol":
       code = getRandomIntInclusive(0, SYMBOL.length - 1);
-      return SYMBOL.at(code);
+      return SYMBOL[code] || "";
   }
 };
 
@@ -46,7 +47,7 @@ export const getPassword = (type: ICharacterType[], length: number): string => {
   while (count < length) {
     count += 1;
     const typeIndex = getRandomIntInclusive(0, type.length - 1);
-    password += getRandomCharacter(type.at(typeIndex) as ICharacterType);
+    password += getRandomCharacter(type[typeIndex] as ICharacterType);
   }
   return password;
 };
