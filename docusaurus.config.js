@@ -8,7 +8,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/nightOwl");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Carrgan",
+  title: "Carrgan universe",
   tagline: "Congratulations, you're in my universe",
   url: "https://carrgan.github.io",
   baseUrl: "/",
@@ -69,12 +69,26 @@ const config = {
             label: "Notes"
           },
           {
-            to: "/blog",
+            to: "/tech-blog",
             label: "Tech Blog"
           },
           {
             to: "/life",
             label: "Life"
+          },
+          {
+            to: "/blog",
+            label: "Blog"
+          },
+          {
+            type: "dropdown",
+            label: "Tools",
+            items: [
+              {
+                to: "/tools/password-generator",
+                label: "Random password"
+              }
+            ]
           },
           {
             type: "localeDropdown",
@@ -86,7 +100,7 @@ const config = {
             position: "right"
           },
           {
-            label: "v2.0(2022.4.22)",
+            label: "v2.1.0(2023.7.2)",
             position: "right",
             to: "/"
           }
@@ -204,6 +218,21 @@ const config = {
          * Path to data on filesystem relative to site dir.
          */
         path: "./life"
+      }
+    ],
+    [
+      "@docusaurus/plugin-content-blog",
+      {
+        id: "tech-blog",
+        /**
+         * URL route for the blog section of your site.
+         * *DO NOT* include a trailing slash.
+         */
+        routeBasePath: "tech-blog",
+        /**
+         * Path to data on filesystem relative to site dir.
+         */
+        path: "./tech-blog"
       }
     ]
   ]

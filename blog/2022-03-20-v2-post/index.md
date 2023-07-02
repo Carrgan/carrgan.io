@@ -1,11 +1,11 @@
 ---
-slug: v2/post
+slug: /v2-post
 title: V2 Post
 authors: carrgan
 tags: [New Version]
 ---
 
-距离 carrgan.io V1 已经过去快一年了，一年之前刚刚从学校出来，还没有参加工作，利用闲暇时光发布了V1。
+距离 carrgan.io V1（2021-4) 已经过去快一年了，一年之前刚刚从学校出来，还没有参加工作，利用闲暇时光发布了V1。
 
 ![v1](./V1.png)
 
