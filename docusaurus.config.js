@@ -87,6 +87,10 @@ const config = {
               {
                 to: "/tools/password-generator",
                 label: "Random password"
+              },
+              {
+                to: "/tools/code-helper",
+                label: "Code helper"
               }
             ]
           },
@@ -183,7 +187,8 @@ const config = {
       },
       prism: {
         theme: lightCodeTheme,
-        darkTheme: darkCodeTheme
+        darkTheme: darkCodeTheme,
+        additionalLanguages: ["csharp"]
       },
       colorMode: {
         defaultMode: "dark",

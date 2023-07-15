@@ -1,0 +1,9 @@
+.codeBlock pre {
+    min-height: 300px;
+}
+
+.textBox textarea {
+    overflow: scroll !important;
+    min-height: 925px;
+    max-height: 100vh;
+}

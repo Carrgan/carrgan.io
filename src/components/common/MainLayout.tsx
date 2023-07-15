@@ -6,7 +6,7 @@ interface ILayout {
   rightMenu?: JSX.Element;
 }
 
-const MainWrapper = ({ leftMenu, children, rightMenu }: ILayout) => {
+const MainLayout = ({ leftMenu, children, rightMenu }: ILayout) => {
   return (
     <div className="main-wrapper mainWrapper_PEsc">
       <div className="container margin-vert--lg">
@@ -20,4 +20,4 @@ const MainWrapper = ({ leftMenu, children, rightMenu }: ILayout) => {
   );
 };
 
-export default MainWrapper;
+export default MainLayout;

@@ -29,11 +29,13 @@
     "eslint-plugin-react": "^7.32.2",
     "file-loader": "^6.2.0",
     "prism-react-renderer": "^1.2.1",
+    "quicktype-core": "^23.0.59",
     "react": "^17.0.1",
     "react-anime": "^4.1.1",
     "react-dom": "^17.0.1",
     "sass": "^1.49.9",
-    "url-loader": "^4.1.1"
+    "url-loader": "^4.1.1",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^2.0.0-beta.17",
