@@ -1,20 +1,12 @@
 import { CircularProgress } from "@mui/joy";
 import React from "react";
+import FullScreenWrapper from "@site/src/components/common/FullScreenWrapper";
 
 const FullScreenLoader = () => (
-  <div
-    style={{
-      height: "95vh",
-      display: "flex",
-      width: "100%",
-      alignItems: "center",
-      justifyContent: "center",
-      flexDirection: "column"
-    }}
-  >
+  <FullScreenWrapper>
     <CircularProgress size="lg" variant="plain" />
     <div style={{ height: 30, width: 30 }} />
-  </div>
+  </FullScreenWrapper>
 );
 
 export default FullScreenLoader;
