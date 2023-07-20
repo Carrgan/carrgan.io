@@ -1,0 +1,32 @@
+.fileSplit {
+    display: flex;
+    margin-top: 16px;
+    div {
+        margin-right: 16px;
+    }
+    button {
+        width: 120px;
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    &>div{
+        width: 600px;
+        height: 600px;
+        margin: 16px 0 16px 0;
+        padding: 24px;
+    }
+}
+
+.fileUploader {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    button {
+
+    }
+}

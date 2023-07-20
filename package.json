@@ -28,6 +28,7 @@
     "docusaurus-plugin-sass": "^0.2.2",
     "eslint-plugin-react": "^7.32.2",
     "file-loader": "^6.2.0",
+    "jszip": "^3.10.1",
     "prism-react-renderer": "^1.2.1",
     "quicktype-core": "^23.0.59",
     "react": "^17.0.1",

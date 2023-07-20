@@ -91,6 +91,10 @@ const config = {
               {
                 to: "/tools/code-helper",
                 label: "Code helper"
+              },
+              {
+                to: "/tools/text-file-split",
+                label: "Text file split"
               }
             ]
           },
@@ -104,7 +108,7 @@ const config = {
             position: "right"
           },
           {
-            label: "v2.1.0(2023.7.2)",
+            label: "v2.1.3(2023.7.20)",
             position: "right",
             to: "/"
           }

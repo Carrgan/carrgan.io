@@ -6,9 +6,10 @@ export interface INumberInput {
   onChange: (value: number) => void;
   max?: number;
   min?: number;
+  startDecorator?: React.ReactNode;
 }
 
-const NumberInput = ({ value, onChange, max, min }: INumberInput) => {
+const NumberInput = ({ value, onChange, max, min, startDecorator }: INumberInput) => {
   const [displayValue, setDisplayValue] = useState<number | "">(value);
 
   useEffect(() => {
@@ -29,7 +30,15 @@ const NumberInput = ({ value, onChange, max, min }: INumberInput) => {
     onChange(numberValue);
   };
 
-  return <Input type={"number"} value={displayValue} onChange={handleValueChange} />;
+  return (
+    <Input
+      type={"number"}
+      startDecorator={"21"}
+      value={displayValue}
+      startDecorator={startDecorator}
+      onChange={handleValueChange}
+    />
+  );
 };
 
 export default NumberInput;
