@@ -2,7 +2,7 @@
 slug: dynamic-height-container
 title: CSS自适应固定长款比容器
 authors: carrgan
-tags: [Front End, CSS]
+tags: [Front end, CSS]
 ---
 
 # CSS实现自适应长款比的容器
