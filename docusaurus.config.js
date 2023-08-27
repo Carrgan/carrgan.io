@@ -108,7 +108,7 @@ const config = {
             position: "right"
           },
           {
-            label: "v2.1.3(2023.7.20)",
+            label: "v2.1.4(2023.8.27)",
             position: "right",
             to: "/"
           }
