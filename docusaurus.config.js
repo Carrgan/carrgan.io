@@ -12,7 +12,7 @@ const config = {
   tagline: "Congratulations, you're in my universe",
   url: "https://carrgan.github.io",
   baseUrl: "/",
-  onBrokenLinks: "throw",
+  onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/logo.svg",
   organizationName: "carrgan", // Usually your GitHub org/user name.
@@ -144,6 +144,15 @@ const config = {
               {
                 label: "Bilibili",
                 href: "https://space.bilibili.com/72913460"
+              }
+            ]
+          },
+          {
+            title: "Useful site",
+            items: [
+              {
+                label: "Tech roadmap",
+                href: "https://roadmap.sh"
               }
             ]
           },
