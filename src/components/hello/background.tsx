@@ -1,55 +1,83 @@
 import React, { createRef, ReactNode, useEffect, useMemo, useState } from "react";
 import Style from "./hello.module.css";
-import Start from "@site/src/components/hello/start";
 import { Random } from "@site/src/components/hello/helper";
 import useScreenSize from "@site/src/screenHelper";
+import { animated, useSpring, useSprings } from "@react-spring/web";
+import { poissonDiskSampling } from "@site/src/helper/poisson-disk-sampling";
+import Star from "@site/src/components/hello/start";
+import { getCryptoRandomInt } from "@site/src/helper/crypto-random-int";
 import Meteor from "@site/src/components/hello/meteor";
-import Anime from "react-anime";
 
 const Background = ({ children }: { children?: ReactNode }) => {
   const container = createRef<HTMLDivElement>();
   const [currentWidth, currentHeight] = useScreenSize();
   const [meteor, setMeteor] = useState<ReactNode>();
 
-  const meteorTime = [1500, 8000];
+  const meteorTime = [1500, 5000];
+
+  const meteorTranslate = useMemo(() => {
+    return (currentWidth > currentHeight ? currentHeight : currentWidth) + 70;
+  }, [currentWidth, currentHeight]);
+  const meteorSpring = useSpring({
+    from: { translateX: 0, translateY: 0 },
+    to: { translateX: meteorTranslate, translateY: meteorTranslate },
+    reset: true,
+    config: {
+      duration: 1500
+    }
+  });
+  const meteorSpringLeft = useSpring({
+    from: { translateX: 0, translateY: 0 },
+    to: { translateX: -meteorTranslate, translateY: meteorTranslate },
+    reset: true,
+    config: {
+      duration: 1500
+    }
+  });
 
   useEffect(() => {
-    const translate = (currentWidth > currentHeight ? currentHeight : currentWidth) + 70;
     const timeOut = setTimeout(() => {
       const x = Random(0, currentWidth);
       setMeteor(undefined);
       if (x > currentWidth / 2) {
         setMeteor(
-          <Anime
-            component={"g"}
-            easing={"linear"}
-            svg
-            translateX={-translate}
-            duration={1500}
-            translateY={translate}
-          >
+          <animated.g style={meteorSpringLeft}>
             <Meteor x={x} left={true} />
-          </Anime>
+          </animated.g>
         );
       } else {
         setMeteor(
-          <Anime
-            component={"g"}
-            easing={"linear"}
-            svg
-            translateX={translate}
-            duration={1500}
-            translateY={translate}
-          >
+          <animated.g style={meteorSpring}>
             <Meteor x={x} />
-          </Anime>
+          </animated.g>
         );
       }
-    }, Random(meteorTime[0], meteorTime[1]));
+    }, getCryptoRandomInt(meteorTime[0], meteorTime[1]));
     return () => {
       clearTimeout(timeOut);
     };
-  }, [currentWidth, meteor]);
+  }, [currentWidth, meteor, meteorSpring, meteorSpringLeft]);
+
+  const circlesPoints = useMemo(() => {
+    return poissonDiskSampling(currentWidth, currentHeight, 80, 0.5);
+  }, [currentWidth, currentHeight]);
+
+  const [circlesSprings] = useSprings(circlesPoints.length, () => {
+    const defaultOpacity = getCryptoRandomInt(100, 500) / 1000;
+    const defaultOpacity2 = getCryptoRandomInt(900, 1000) / 1000;
+    return {
+      loop: true,
+      from: { opacity: defaultOpacity },
+      to: [{ opacity: defaultOpacity2 }, { opacity: defaultOpacity }],
+      delay: getCryptoRandomInt(0, 20000),
+      config: {
+        friction: Math.random(),
+        damping: Math.random(),
+        mass: 4,
+        duration: getCryptoRandomInt(1000, 3000)
+      }
+    };
+  });
 
   const renderCircle = () => {
     const number = 60;
@@ -70,22 +98,41 @@ const Background = ({ children }: { children?: ReactNode }) => {
           Random(yPadding, currentHeight - yPadding)
         ]);
     }
-    return coordinates.map((i, index) => (
-      <Anime
-        key={`Circle-${index}-${i[0]}-${i[1]}`}
-        easing="cubicBezier(.5, .05, .1, .3)"
-        direction="alternate"
-        svg
-        opacity={[0, 1]}
-        loop={true}
-        delay={Random(0, 5) * 1000}
-        duration={Random(2, 5) * 1000}
-        component={"g"}
-      >
-        <circle id="Oval" fill="#ffff" cx={i[0]} cy={i[1]} r={Random(2, 4)} />
-      </Anime>
-    ));
+
+    return circlesSprings.map((props, index) => {
+      return (
+        <animated.g style={props} key={`start-${index}`}>
+          <circle
+            id="Oval"
+            fill="#ffff"
+            cx={circlesPoints[index].x}
+            cy={circlesPoints[index].y}
+            r={getCryptoRandomInt(1, 6)}
+          />
+        </animated.g>
+      );
+    });
   };
+
+  const StarCount = useMemo(() => {
+    return currentWidth > 400 ? 10 : 5;
+  }, [currentWidth]);
+
+  const [starSprints] = useSprings(StarCount, () => {
+    return {
+      loop: true,
+      from: { opacity: 0.5 },
+      to: [{ opacity: 1 }, { opacity: 0.5 }],
+      delay: Random(0, 20) * 1000,
+      config: {
+        friction: Math.random(),
+        damping: Math.random(),
+        mass: 4,
+        duration: (Random(1, 2) * 1000) / 2
+      }
+    };
+  });
+
   const renderStart = () => {
     const number = currentWidth > 400 ? 10 : 5;
     const xPadding = 20;
@@ -98,28 +145,19 @@ const Background = ({ children }: { children?: ReactNode }) => {
           Random(yPadding, currentHeight - yPadding)
         ]);
     }
-    return coordinates.map((i, index) => (
-      <Anime
-        key={`Start-${index}`}
-        easing="linear"
-        direction="alternate"
-        svg
-        opacity={[0.8, 1]}
-        loop={true}
-        duration={Random(1, 3) * 1000}
-        component={"g"}
-      >
-        <Start
-          id={`Start-${index}`}
+
+    return starSprints.map((props, index) => (
+      <animated.g style={props} key={`start-${index}`}>
+        <Star
+          id={`Star-${index}`}
           fill="#D94F49"
           opacity="0.756878807"
           weight={Random(5, 15)}
-          center={i}
+          center={coordinates[index]}
         />
-      </Anime>
+      </animated.g>
     ));
   };
-
   // Touch Screen scroll bug ifx
   // const Starts = isPhone()
   //   ? useMemo(renderCircle, [])

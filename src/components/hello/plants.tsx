@@ -1,12 +1,47 @@
 import React, { useMemo } from "react";
 import { BrowserType, getBrowserType } from "@site/src/browserHelper";
-import Anime from "react-anime";
+import { animated, easings, useSpring } from "@react-spring/web";
 
 const Plants = ({ logoWidth, speed }: { logoWidth: number; speed?: number }) => {
   const isSafari = useMemo(() => getBrowserType() === BrowserType.Safari, []);
-  // const runAnimation = (animation: string) => (isSafari ? undefined : animation);
   const renderShadow = () => (isSafari ? undefined : "url(#filter-wwl4--iet0-1)");
-  const runAnimation = (animation: string) => animation;
+
+  const smailPlantSpring = useSpring({
+    loop: true,
+    from: { translateX: 0, translateY: 0 },
+    to: [
+      { translateX: 10, translateY: 25 },
+      { translateX: 0, translateY: 0 }
+    ],
+    config: {
+      duration: speed ? speed : 3000,
+      easing: easings.easeInOutCubic
+    }
+  });
+
+  const plantSpring = useSpring({
+    loop: true,
+    from: { translateY: 0 },
+    to: [{ translateY: 10 }, { translateY: 0 }],
+    config: {
+      duration: speed ? speed : 3000,
+      easing: easings.easeInOutBack
+    }
+  });
+
+  const plantHaloSpring = useSpring({
+    loop: true,
+    from: { translateX: 0, translateY: 0 },
+    to: [
+      { translateX: 2.5, translateY: 5 },
+      { translateX: 0, translateY: 0 }
+    ],
+    config: {
+      duration: speed ? speed : 3000,
+      easing: easings.easeInOutBack
+    }
+  });
+
   return (
     <div>
       <svg
@@ -132,15 +167,7 @@ const Plants = ({ logoWidth, speed }: { logoWidth: number; speed?: number }) => 
         </defs>
         <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" opacity="1">
           <g id="logo" transform="translate(-34.000000, -37.373332)" filter={renderShadow()}>
-            <Anime
-              svg
-              component={"g"}
-              easing="easeInOutCubic"
-              direction="alternate"
-              duration={speed ? speed : 3000}
-              loop
-              transform={"translate(10, 25)"}
-            >
+            <animated.g style={smailPlantSpring}>
               <g id="Smail-Plant" transform="translate(47.623353, 38.248013)">
                 <g id="Plant" fill="url(#linearGradient-wwl4--iet0-2)" opacity="1">
                   <path
@@ -176,7 +203,7 @@ const Plants = ({ logoWidth, speed }: { logoWidth: number; speed?: number }) => 
                   ></use>
                 </g>
               </g>
-            </Anime>
+            </animated.g>
             <g
               id="Big-Plant"
               transform="translate(270.563284, 188.373332) rotate(-9.000000) translate(-270.563284, -188.373332) translate(20.563294, 37.248011)"
@@ -186,41 +213,24 @@ const Plants = ({ logoWidth, speed }: { logoWidth: number; speed?: number }) => 
                 transform="translate(89.946710, 0.000000)"
                 fill="url(#linearGradient-wwl4--iet0-7)"
               >
-                <Anime
-                  svg
-                  component={"g"}
-                  easing="easeInOutBack"
-                  direction="alternate"
-                  duration={speed ? speed : 3000}
-                  // delay={400}
-                  loop
-                  transform={"translate(0, 10)"}
-                >
+                <animated.g style={plantSpring}>
                   <path
                     d="M0,151.125321 C0,67.6611109 70.6307247,0 157.758139,0 C244.885553,0 315.516278,67.6611109 315.516278,151.125321 C315.516278,234.589531 244.885553,302.250642 157.758139,302.250642 C70.6307247,302.250642 0,234.589531 0,151.125321"
                     id="path-9"
                   ></path>
-                </Anime>
+                </animated.g>
               </g>
               <g
-                id="Random"
+                id="Halo"
                 transform="translate(249.999990, 166.105397) rotate(-7.000000) translate(-249.999990, -166.105397) translate(5.243299, 108.111501)"
                 fill="#FBD689"
               >
-                <Anime
-                  svg
-                  component={"g"}
-                  easing="easeInOutBack"
-                  direction="alternate"
-                  duration={speed ? speed : 3000}
-                  loop
-                  transform={"translate(2.5, 5)"}
-                >
+                <animated.g style={plantHaloSpring}>
                   <path
                     d="M411.246418,5.68434189e-14 C459.38925,12.222307 489.513384,29.678792 489.513384,49.05923 C489.513384,86.022853 379.93208,115.987791 244.756692,115.987791 C109.581304,115.987791 -1.13686838e-13,86.022853 -1.13686838e-13,49.05923 C-1.13686838e-13,31.206768 25.56134,14.986845 67.2219984,2.986845 C52.3296001,12.026267 44.0145537,22.130178 44.3788873,32.563328 C45.5184621,65.19648 131.139833,88.693172 235.619571,85.044659 C340.099309,81.396146 423.873063,51.984046 422.733489,19.350894 C422.494178,12.497932 418.52922,6.047888 411.446354,0.167541 L411.246418,5.68434189e-14 Z"
                     id="path-11"
                   ></path>
-                </Anime>
+                </animated.g>
               </g>
             </g>
           </g>

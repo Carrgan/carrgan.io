@@ -6,7 +6,7 @@ const lightCodeTheme = require("prism-react-renderer/themes/github");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const darkCodeTheme = require("prism-react-renderer/themes/nightOwl");
 
-/** @type {import('@docusaurus/types').Config} */
+/** @type {import("@docusaurus/types").Config} */
 const config = {
   title: "Carrgan universe",
   tagline: "Congratulations, you're in my universe",
@@ -28,7 +28,7 @@ const config = {
   presets: [
     [
       "@docusaurus/preset-classic",
-      /** @type {import('@docusaurus/preset-classic').Options} */
+      /** @type {import("@docusaurus/preset-classic").Options} */
       ({
         docs: false,
         blog: {
@@ -49,7 +49,7 @@ const config = {
   ],
 
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    /** @type {import("@docusaurus/preset-classic").ThemeConfig} */
     ({
       navbar: {
         title: "Carrgan Universe",
@@ -108,7 +108,7 @@ const config = {
             position: "right"
           },
           {
-            label: "v2.1.4(2023.8.27)",
+            label: "v2.2.0(2024.8)",
             position: "right",
             to: "/"
           }

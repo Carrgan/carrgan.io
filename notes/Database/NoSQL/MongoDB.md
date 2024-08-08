@@ -1,14 +1,16 @@
 ## 安装
+
 ### MacOS
+
 - brew本来不能安装
 - 这是用于官方MongoDB软件的自定义HomebrewTap
 - 使用以下命令在MacOS终端会话中添加自定义Tap:
 
-    `brew tap mongodb/brew`
+  `brew tap mongodb/brew`
 
 - 可正常安装
 
-    `brew install mongodb-community@4.2`
+  `brew install mongodb-community@4.2`
 
 如果安装了旧版本报错
 
@@ -18,86 +20,90 @@
         `brew install mongodb-community@4.2`
 
 除了二进制文件之外，安装还创建了：
+
 - the configuration file (/usr/local/etc/mongod.conf)
 - the log directory path (/usr/local/var/log/mongodb)
 - the data directory path (/usr/local/var/mongodb)
 
 ## 运行MongoDB社区版
+
 - 要将MongoDB（即mongod进程）作为macOS服务运行，请发出以下命令
 
-    `brew services start mongodb-community@4.2`
+  `brew services start mongodb-community@4.2`
 
 - 要将MongoDB 作为后台进程手动运行，请发出以下命令：
 
-    `mongod --config /usr/local/etc/mongod.conf --fork`
+  `mongod --config /usr/local/etc/mongod.conf --fork`
 
 两种方法都使用/usr/local/etc/mongod.conf在安装过程中创建的文件。您也可以将自己的MongoDB 配置选项添加到此文件中。
 
 - 要验证MongoDB是否正在运行，请mongod在正在运行的进程中进行搜索
 
-    `ps aux | grep -v grep | grep mongod`
-
+  `ps aux | grep -v grep | grep mongod`
 
 ## 维修
+
 - 删除下载的.tgz档案
 
-    `brew untap mongodb/brew && brew tap mongodb/brew`
+  `brew untap mongodb/brew && brew tap mongodb/brew`
 
 - 重试安装
 
-    `brew install mongodb-community@4.2`
+  `brew install mongodb-community@4.2`
 
 ## MongoDB使用
+
 ### 基础命令
+
 - 查看当前的数据库：
 
-    `db`
+  `db`
 
 - 查看所有的数据库：
 
-    `show dbs/show databases`
+  `show dbs/show databases`
 
 - 切換数据库：
 
-    `use db_name`
+  `use db_name`
 
 - 删除当前的数据库：
 
-    `db.dropDatabase()`
+  `db.dropDatabase()`
 
 - 不用手动创建数据库
-    -直接添加就会生成数据库了
+  -直接添加就会生成数据库了
 
 ### 关于集合
+
 集合就是mysql的表了
 
 - 不手动创建集合
 
-    向不存在的集合中第一次加入数据时，集合会被创建出来
+  向不存在的集合中第一次加入数据时，集合会被创建出来
 
 - 手动创建结合
 
-    `db.createCollection(name, options)`
+  `db.createCollection(name, options)`
 
-    `db.createCollection ("stu")`
+  `db.createCollection ("stu")`
 
-    `db.createCollection ("sub", {capped: true, size: 10})`
+  `db.createCollection ("sub", {capped: true, size: 10})`
 
         - 参数 capped：认值为 false 表示不设置上限，值为 true 表示设置上限
         - 参数 size：当 capped 值为 true 时，需要指定此参数，表示上限大小，当文档达到上限时，会将之前的数据覆盖，单位为字节
 
 - 查看集合：
 
-    `show collections`
+  `show collections`
 
 - 删除集合：
 
-    `db.集合名称.drop ()`
-    
-- 更改集合名称
-	
-   `adminCommand({renameColleciton: "db.col1", to: "db.col2"})
+  `db.集合名称.drop ()`
 
+- 更改集合名称
+
+  `adminCommand({renameColleciton: "db.col1", to: "db.col2"})`
 
 ## 数据类型
 
@@ -120,11 +126,11 @@ Date：存储当前日期或时间的 UNX 时间格式
 - objectId 是一个 12 字节的十六进制数：
     - 前 4 个字节为当前 时间戳
     - 接下来 3 个字节的 机器 ID
-    - 接下来的 2 个字节中 Mongodbe 的服务进程 id    
+    - 接下来的 2 个字节中 Mongodbe 的服务进程 id
     - 最后 3 个字节是 简单的增量值
 
-
 ## 插入&保存
+
 ### 插入
 
 `db.集合名称.insert(document)`
@@ -146,7 +152,6 @@ Date：存储当前日期或时间的 UNX 时间格式
 - `db.collecion.insert({})` 插入数据，`_id` 存在就报错
 - `db.collection.save({})`   插入数据，`_id`
 
-
 ## 查询
 
 `db.集合名称.find({条件文档})`
@@ -154,8 +159,6 @@ Date：存储当前日期或时间的 UNX 时间格式
 `db.集合名称.findOne({条件文档})` 查一条
 
 `db.集合名称.find({条件文档}).prett()` 格式化结果
-
-
 
 ## 更新
 
@@ -167,10 +170,9 @@ Date：存储当前日期或时间的 UNX 时间格式
     update：更新操作符
     multi：可选，默认是 false，表示只更新找到的第一条记录，值为 true 表示把满足条件的文档全部更新        
 
-
 `db.test1000.update({name: "xiaowang")}, {name: "xiaozhao"})`
 
-    name 为 xiaowan 的数据替换为{name: "xiaozhao"}
+name 为 xiaowan 的数据替换为 `{name: "xiaozhao"}`
 
 `db.test1000.update({name: "xiaowang"}, {$set:{name: "xiaozhao"}})`
 
@@ -178,7 +180,7 @@ Date：存储当前日期或时间的 UNX 时间格式
 
 `db.test1000.update({name: "xiaowang"}, {$set:{name: "xiaozhao"}} ,{multi: true})`
 
-     {multi: true}达到更新多条的目的
+`{multi: true}` 达到更新多条的目的
 
 注意："multi update only works with \$ operators"
 
@@ -235,39 +237,38 @@ abc开头，789结尾
 
 `db.products.find ({sku: {$regex: '789$'})`
 
-
 ## Limit 和 skip
 
 - 方法 limit (）：
 
-    用于读取指定数量的文档
+  用于读取指定数量的文档
 
-    `db.集合名称.find().limit(NUMBER）`
+  `db.集合名称.find().limit(NUMBER）`
 
-    查询 2 条学生信息
+  查询 2 条学生信息
 
-    `db.stu.find().limit(2)`
+  `db.stu.find().limit(2)`
 
 - 方法 skip (）：
 
-    用于跳过指定数量的文档
+  用于跳过指定数量的文档
 
-    `db.集合名称.find.skip(NUMBER)`
+  `db.集合名称.find.skip(NUMBER)`
 
-    `db.stu.find().skip(2)`
+  `db.stu.find().skip(2)`
 
 - 同时使用
 
-    `db.集合名称.find.limit(NUMBER).skip(NUMBER)`
+  `db.集合名称.find.limit(NUMBER).skip(NUMBER)`
 
-    `db.集合名称.find.skip(NUMBER).limit(NUMBER)` 推荐
-
+  `db.集合名称.find.skip(NUMBER).limit(NUMBER)` 推荐
 
 ## 自定义查询*
 
 使用`$ where` 后面写一个函数，返回满足条件的数据
 
 查询年龄大于 30 的学生
+
 ```
 db.stu.find ({
    $where: function(){
@@ -314,12 +315,11 @@ db.stu.find ({
 
 `db.stu.count({age: {$gt: 20}, gender: true})`
 
-
 ## 数据的备份和恢复
 
 备份的语法:
 
-  `mongodump -h dbhost -d dbname -o dbdirectory`
+`mongodump -h dbhost -d dbname -o dbdirectory`
 
       -h: 服务器地址，也可以指定端口号
       -d: 需要备份的数据库名称
@@ -331,7 +331,7 @@ db.stu.find ({
 
 恢复语法：
 
-  `mongorestore -h dbhost -d dbname --dir dbdirectory`
+`mongorestore -h dbhost -d dbname --dir dbdirectory`
 
     -h: 服务器地址
     -d: 需要恢复的数据库实例
@@ -346,32 +346,33 @@ db.stu.find ({
 第一阶个`{}`里的内容通过管道传给第二个`{}`使用
 
 ## 常用管道
+
 在 mongodbe 中，文档处理完毕后，通过管道进行下一次处理常用管道如下：
 
-  - `$group`：将集合中的文档分组，可用于统计结果
-  - `$match`：过滤数据，只输出符合条件的文档
-  - `$project`：修改输入文档的结构，如重命名、增加、删除字段、创建计算结果
-  - `$sort`：将输入文档排序后输出`{$sort:{age:1}}`
-  - `$limit`：限制聚合管道返回的文档数
-  - `$skip`：跳过指定数量的文档，并返回余下的文档
-  - `$unwind`：将数组类型的字段进行拆分
-    ```
-    db.t2.insert({_id:1, item:'t-shirt', size: ['S', 'M', 'L']})
-    db.t2.insert({_id:2, item:'t-shirt'})
+- `$group`：将集合中的文档分组，可用于统计结果
+- `$match`：过滤数据，只输出符合条件的文档
+- `$project`：修改输入文档的结构，如重命名、增加、删除字段、创建计算结果
+- `$sort`：将输入文档排序后输出`{$sort:{age:1}}`
+- `$limit`：限制聚合管道返回的文档数
+- `$skip`：跳过指定数量的文档，并返回余下的文档
+- `$unwind`：将数组类型的字段进行拆分
+  ```
+  db.t2.insert({_id:1, item:'t-shirt', size: ['S', 'M', 'L']})
+  db.t2.insert({_id:2, item:'t-shirt'})
 
-    db.t2.aggregate(
-      {
-        $unwind: '$size',
-        PreserveNullandEmptyArrays: true #防止数据丢失即使有空也会保留
-      }
-    )
+  db.t2.aggregate(
+    {
+      $unwind: '$size',
+      PreserveNullandEmptyArrays: true #防止数据丢失即使有空也会保留
+    }
+  )
 
-    #结果
-    {_id:1, item:'t-shirt', size: 'S'}
-    {_id:1, item:'t-shirt', size: 'M'}
-    {_id:1, item:'t-shirt', size: 'L'}
-    {_id:2, item:'t-shirt'}
-    ```
+  #结果
+  {_id:1, item:'t-shirt', size: 'S'}
+  {_id:1, item:'t-shirt', size: 'M'}
+  {_id:1, item:'t-shirt', size: 'L'}
+  {_id:2, item:'t-shirt'}
+  ```
 
 ## 表达式
 
@@ -379,13 +380,13 @@ db.stu.find ({
 
 语法：`表达式：'$列名常用表达式'`
 
-  - `$sum`：计算总和，`$sum:1`表示以一倍计数
-  - `$avg`：计算平均值
-  - `$min`：获取最小值
-  - `$max`：获取最大值
-  - `$push`：在结果文档中插入值到一个数组中
-  - `$first`：根据资源文档的排序获取第一个文档数据
-  - `$last`：根据资源文档的排序获取最后一个文档数据
+- `$sum`：计算总和，`$sum:1`表示以一倍计数
+- `$avg`：计算平均值
+- `$min`：获取最小值
+- `$max`：获取最大值
+- `$push`：在结果文档中插入值到一个数组中
+- `$first`：根据资源文档的排序获取第一个文档数据
+- `$last`：根据资源文档的排序获取最后一个文档数据
 
 ## `$group`的注意事项
 
@@ -394,8 +395,8 @@ db.stu.find ({
 - 取不同字段的值需要使用`$`，`{name: $name}`
 - 取字典嵌套字典中的值时(取上层字典中的值)`$_id.name`
 - 能够同时按照多个键进行分组，对全部键进行分组可以去重
-`{$group: {_id: {name: '$name'}, {age: '$age'}}}`
-  - 结果:`{_id: {name: '', age: ''}}`
+  `{$group: {_id: {name: '$name'}, {age: '$age'}}}`
+    - 结果:`{_id: {name: '', age: ''}}`
 
 ## 聚合实例
 
