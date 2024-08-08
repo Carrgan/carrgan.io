@@ -180,12 +180,8 @@ const config = {
                 href: "https://docusaurus.io/"
               },
               {
-                label: "AnimeJS",
-                href: "https://animejs.com/"
-              },
-              {
-                label: "React-Anime",
-                href: "https://github.com/plus1tv/react-anime"
+                label: "React-Spring",
+                href: "https://react-spring.dev/"
               }
             ]
           }
