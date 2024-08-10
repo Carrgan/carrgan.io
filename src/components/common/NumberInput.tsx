@@ -33,7 +33,6 @@ const NumberInput = ({ value, onChange, max, min, startDecorator }: INumberInput
   return (
     <Input
       type={"number"}
-      startDecorator={"21"}
       value={displayValue}
       startDecorator={startDecorator}
       onChange={handleValueChange}

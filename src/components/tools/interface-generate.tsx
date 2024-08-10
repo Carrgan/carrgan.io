@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CodeBlock from "@theme/CodeBlock";
 import { read, utils } from "xlsx";
-import { quicktypeJSON } from "@site/src/helper/quicktype";
+// import { quicktypeJSON } from "@site/src/helper/quicktype";
 import { Grid, Input, Textarea } from "@mui/joy";
 import FileUploader from "@site/src/components/common/FileUploader";
 import Style from "@site/src/css/code-help.module.css";
@@ -135,23 +135,23 @@ const InterfaceGenerate = () => {
   }, [uploadBuffer]);
 
   useEffect(() => {
-    if (loadedJson) {
-      quicktypeJSON("ts", typeRootName, JSON.stringify(loadedJson), { "just-types": true }).then(
-        tsTypes => {
-          setTsTypes(tsTypes.lines.join("\n"));
-        }
-      );
-      // Get option definition from blow code
-      // const cSharpTargetLanguage = new CSharpTargetLanguage();
-      // console.log(cSharpTargetLanguage.optionDefinitions);
-      quicktypeJSON("cs", typeRootName, JSON.stringify(loadedJson), {
-        namespace: "CarrganIO",
-        features: "just-types",
-        "type-for-any": "arrow"
-      }).then(csTypes => {
-        setCsTypes(csTypes.lines.join("\n"));
-      });
-    }
+    // if (loadedJson) {
+    //   quicktypeJSON("ts", typeRootName, JSON.stringify(loadedJson), { "just-types": true }).then(
+    //     tsTypes => {
+    //       setTsTypes(tsTypes.lines.join("\n"));
+    //     }
+    //   );
+    //   // Get option definition from blow code
+    //   // const cSharpTargetLanguage = new CSharpTargetLanguage();
+    //   // console.log(cSharpTargetLanguage.optionDefinitions);
+    //   quicktypeJSON("cs", typeRootName, JSON.stringify(loadedJson), {
+    //     namespace: "CarrganIO",
+    //     features: "just-types",
+    //     "type-for-any": "arrow"
+    //   }).then(csTypes => {
+    //     setCsTypes(csTypes.lines.join("\n"));
+    //   });
+    // }
   }, [loadedJson, typeRootName]);
 
   const handleFileUpload = (f: File) => {
