@@ -26,8 +26,9 @@ jobs:
         run: npm run build
 
       - name: 上传构建制品
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
+          name: build
           path: build
 
   deploy:
@@ -35,6 +36,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: check
+        run: ls -l
       - name: 部署到 GitHub Pages
         uses: crazy-max/ghaction-github-pages@v4
         with:
