@@ -42,7 +42,7 @@ jobs:
     # 部署到 Github Pages 环境
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: https://carrgan.github.io/
 
     runs-on: ubuntu-latest
     steps:
