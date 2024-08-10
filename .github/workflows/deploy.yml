@@ -45,21 +45,12 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build
-          path: ./
+          path: build
 
       - name: Pre check
         run: |
           ls -l
           pwd
-
-      - name: 解压构建制品
-        run: |
-          mkdir build
-          unzip build.zip -d build
-        working-directory: ./
-
-      - name: Check
-        run: ls -l
 
       - name: 查看构建目录
         run: ls -la build
