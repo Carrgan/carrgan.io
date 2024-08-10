@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: 构建 Docusaurus
+    name: CI Docusaurus
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,42 +20,29 @@ jobs:
           node-version: 18
           cache: 'npm'
 
-      - name: 安装依赖
+      - name: npm ci
         run: npm ci
-      - name: 构建网站
+      - name: npm build
         run: npm run build
 
-      - name: 上传构建制品
+      - name: upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: build
           path: build
 
   deploy:
-    name: 部署到 GitHub Pages
+    name: Deploy GitHub Pages
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Pre check
-        run: |
-          ls -l
-          pwd
-
-      - name: 下载构建制品
+      - name: Download artifact
         uses: actions/download-artifact@v3
         with:
           name: build
           path: build
 
-      - name: Pre check
-        run: |
-          ls -l
-          pwd
-
-      - name: 查看构建目录
-        run: ls -la build
-
-      - name: 部署到 GitHub Pages
+      - name: deploy GitHub Pages
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: main
@@ -63,3 +50,4 @@ jobs:
           repo: carrgan/carrgan.github.io
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PAT: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
