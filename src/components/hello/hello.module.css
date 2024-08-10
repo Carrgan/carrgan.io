@@ -16,8 +16,6 @@
     grid-area: a;
     display: flex;
     color: white;
-    justify-content: center;
-    align-items: center;
 }
 
 .logoContainer {
@@ -76,7 +74,8 @@
                       ". . ."
                       "c c .";
     }
-    .textContainer{
+
+    .textContainer {
         align-items: flex-end;
     }
 }

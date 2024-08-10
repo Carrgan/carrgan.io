@@ -1,0 +1,55 @@
+@keyframes wave {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  50% {
+    /* +0.5s of delay between each loop */
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton {
+  width: 100%;
+  height: 100%;
+  display: inline;
+  position: absolute;
+  overflow: hidden;
+  cursor: default;
+  pointer-events: none;
+  //
+  //& > * {
+  //  visibility: hidden;
+  //}
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+  }
+
+  &::before {
+    z-index: 9;
+    //border-radius: ${theme.vars.radius.xs};
+    background: #111926;
+    width: 100%;
+  }
+
+  /* Fix bug in Safari https://bugs.webkit.org/show_bug.cgi?id=68196 */
+  //-webkit-mask-image: -webkit-radial-gradient(white, black);
+
+  &::after {
+    animation: wave 1.6s linear 0.5s infinite;
+    background: linear-gradient(90deg, transparent, rgba(255 255 255 / 0.08), transparent);
+    transform: translateX(-100%); /* Avoid flash during server-side hydration */
+    z-index: 10;
+  }
+}

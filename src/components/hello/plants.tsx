@@ -8,6 +8,7 @@ const Plants = ({ logoWidth, speed }: { logoWidth: number; speed?: number }) => 
 
   const smailPlantSpring = useSpring({
     loop: true,
+    reset: true,
     from: { translateX: 0, translateY: 0 },
     to: [
       { translateX: 10, translateY: 25 },
@@ -21,6 +22,7 @@ const Plants = ({ logoWidth, speed }: { logoWidth: number; speed?: number }) => 
 
   const plantSpring = useSpring({
     loop: true,
+    reset: true,
     from: { translateY: 0 },
     to: [{ translateY: 10 }, { translateY: 0 }],
     config: {
@@ -31,6 +33,7 @@ const Plants = ({ logoWidth, speed }: { logoWidth: number; speed?: number }) => 
 
   const plantHaloSpring = useSpring({
     loop: true,
+    reset: true,
     from: { translateX: 0, translateY: 0 },
     to: [
       { translateX: 2.5, translateY: 5 },

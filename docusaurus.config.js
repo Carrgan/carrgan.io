@@ -89,10 +89,6 @@ const config = {
                 label: "Random password"
               },
               {
-                to: "/tools/code-helper",
-                label: "Code helper"
-              },
-              {
                 to: "/tools/text-file-split",
                 label: "Text file split"
               }
@@ -108,7 +104,7 @@ const config = {
             position: "right"
           },
           {
-            label: "v2.2.0(2024.8)",
+            label: "v3.0.0(2024.8)",
             position: "right",
             to: "/"
           }

@@ -2,10 +2,10 @@ import React from "react";
 import Background from "@site/src/components/hello/background";
 import Style from "./hello.module.css";
 import Plants from "@site/src/components/hello/plants";
-import useScreenSize from "@site/src/screenHelper";
+import useAvailableScreenSize from "@site/src/use-available-screen-size";
 
 const Hello = () => {
-  const [currentWidth, currentHeight] = useScreenSize();
+  const [currentWidth, currentHeight] = useAvailableScreenSize();
   const logoWidth = currentWidth > currentHeight ? currentHeight : currentWidth * 0.96;
   return (
     <div>

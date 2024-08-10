@@ -1,7 +1,7 @@
 import React, { createRef, ReactNode, useEffect, useMemo, useState } from "react";
 import Style from "./hello.module.css";
 import { Random } from "@site/src/components/hello/helper";
-import useScreenSize from "@site/src/screenHelper";
+import useAvailableScreenSize from "@site/src/use-available-screen-size";
 import { animated, useSpring, useSprings } from "@react-spring/web";
 import { poissonDiskSampling } from "@site/src/helper/poisson-disk-sampling";
 import Star from "@site/src/components/hello/start";
@@ -10,7 +10,7 @@ import Meteor from "@site/src/components/hello/meteor";
 
 const Background = ({ children }: { children?: ReactNode }) => {
   const container = createRef<HTMLDivElement>();
-  const [currentWidth, currentHeight] = useScreenSize();
+  const [currentWidth, currentHeight] = useAvailableScreenSize();
   const [meteor, setMeteor] = useState<ReactNode>();
 
   const meteorTime = [1500, 5000];

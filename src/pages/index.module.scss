@@ -1,0 +1,76 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.homeWrapper {
+  img {
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    user-drag: none;
+    user-select: none;
+  }
+}
+
+.textContainer {
+  margin-left: 6%;
+
+  & h1 {
+    font-size: max(5vw, 48px);
+    font-weight: 300;
+  }
+
+  & h4 {
+    padding-left: 10px;
+    font-weight: 400;
+    font-size: max(1vw, 12px);
+  }
+}
+
+.spaceCatWrapper {
+  cursor: pointer;
+
+  svg {
+    width: 35vw;
+    height: auto;
+    min-width: 400px;
+  }
+}
+
+.textWindowParallax {
+  margin-left: 50%;
+
+  & > div:first-child {
+    width: 40%;
+  }
+}
+
+
+@media screen and (min-width: 768px), (max-width: 1024px) {
+  .spaceCatWrapper {
+    transform: translateX(-200px);
+  }
+  .textContainer {
+    transform: translate(-40px, -80px);
+  }
+}
+
+
+@media screen and (max-width: 767px) {
+  .theEarth {
+    transform: translate(-40px);
+  }
+  .spaceCatWrapper {
+    transform: translateX(-240px);
+  }
+  .textContainer {
+    transform: translate(-40px);
+  }
+  .textWindowParallax {
+    margin-left: 5%;
+
+    & > div:first-child {
+      width: 90%;
+    }
+  }
+}
