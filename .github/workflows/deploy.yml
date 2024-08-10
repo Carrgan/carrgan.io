@@ -36,8 +36,25 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: check
+      - name: Pre check
         run: ls -l
+
+      - name: 下载构建制品
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+
+      - name: 解压构建制品
+        run: |
+          mkdir build
+          unzip build.zip -d build
+
+      - name: Check
+        run: ls -l
+
+      - name: 查看构建目录
+        run: ls -la build
+
       - name: 部署到 GitHub Pages
         uses: crazy-max/ghaction-github-pages@v4
         with:
