@@ -1,0 +1,18 @@
+# 获取当前分支名称
+branch_name=$(git symbolic-ref --short HEAD)
+
+# 仅在 'dev' 分支上执行 build
+if [ "$branch_name" = "development" ]; then
+  echo "On branch 'dev', running build..."
+  npm run build
+
+  # 检查 build 是否成功
+  if [ $? -ne 0 ]; then
+    echo "Build failed, aborting push"
+    exit 1
+  fi
+else
+  echo "Not on 'development' branch, skipping build"
+fi
+
+exit 0
