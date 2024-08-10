@@ -33,19 +33,13 @@ jobs:
   deploy:
     name: 部署到 GitHub Pages
     needs: build
-
-    # 给予 GITHUB_TOKEN 进行 Pages 部署所必须的权限
-    permissions:
-      pages: write
-      id-token: write
-
-    # 部署到 Github Pages 环境
-    environment:
-      name: github-pages
-      url: https://carrgan.github.io
-
     runs-on: ubuntu-latest
     steps:
       - name: 部署到 GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: main
+          build_dir: build
+          external_repository: carrgan/carrgan.github.io
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
