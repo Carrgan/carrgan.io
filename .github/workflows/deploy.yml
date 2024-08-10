@@ -40,6 +40,6 @@ jobs:
         with:
           target_branch: main
           build_dir: build
-          external_repository: carrgan/carrgan.github.io
+          repo: carrgan/carrgan.github.io
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
