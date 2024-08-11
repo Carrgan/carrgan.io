@@ -1,6 +1,6 @@
 import React from "react";
-import RandomPassword from "@site/src/components/tools/RandomPassword";
-import MuiPageWrapper from "@site/src/components/common/MuiPageWrapper";
+import RandomPassword from "@site/src/components/tools/random-password";
+import MuiPageWrapper from "@site/src/components/common/mui-page-wrapper";
 
 export default function PasswordGenerator(): JSX.Element {
   return (

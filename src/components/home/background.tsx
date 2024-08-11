@@ -1,12 +1,11 @@
 import React, { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { IClintSize } from "@site/src/interface";
-import { Random } from "@site/src/components/hello/helper";
 import { animated, useSpring, useSprings } from "@react-spring/web";
-import { getCryptoRandomInt } from "@site/src/helper/crypto-random-int";
 import { poissonDiskSampling } from "@site/src/helper/poisson-disk-sampling";
-import Star from "@site/src/components/hello/start";
-import Meteor from "@site/src/components/hello/meteor";
+import Star from "@site/src/components/home/start";
+import Meteor from "@site/src/components/home/meteor";
 import useAvailableScreenSize from "@site/src/use-available-screen-size";
+import { getCryptoRandomInt } from "@site/src/helper/crypto-random-int";
 
 const Background = () => {
   const [clintSize, setClintSize] = useState<IClintSize>({ width: 0, height: 0 });
@@ -58,13 +57,17 @@ const Background = () => {
     const width = clintSize.width;
     const height = clintSize.height;
     for (let i = 0; i < number * 0.8; i++) {
-      width && coordinates.push([Random(xPadding, width / 2), Random(yPadding, height - yPadding)]);
+      width &&
+        coordinates.push([
+          getCryptoRandomInt(xPadding, width / 2),
+          getCryptoRandomInt(yPadding, height - yPadding)
+        ]);
     }
     for (let i = 0; i < number * 0.2; i++) {
       width &&
         coordinates.push([
-          Random(width / 2, width - xPadding),
-          Random(yPadding, height - yPadding)
+          getCryptoRandomInt(width / 2, width - xPadding),
+          getCryptoRandomInt(yPadding, height - yPadding)
         ]);
     }
 
@@ -92,12 +95,12 @@ const Background = () => {
       loop: true,
       from: { opacity: 0.5 },
       to: [{ opacity: 1 }, { opacity: 0.5 }],
-      delay: Random(0, 20) * 1000,
+      delay: getCryptoRandomInt(0, 20) * 1000,
       config: {
         friction: Math.random(),
         damping: Math.random(),
         mass: 4,
-        duration: (Random(1, 2) * 1000) / 2
+        duration: (getCryptoRandomInt(1, 2) * 1000) / 2
       }
     };
   });
@@ -112,8 +115,8 @@ const Background = () => {
     for (let i = 0; i < number; i++) {
       width &&
         coordinates.push([
-          Random(width / 2, width - xPadding),
-          Random(yPadding, height - yPadding)
+          getCryptoRandomInt(width / 2, width - xPadding),
+          getCryptoRandomInt(yPadding, height - yPadding)
         ]);
     }
 
@@ -123,7 +126,7 @@ const Background = () => {
           id={`Star-${index}`}
           fill="#D94F49"
           opacity="0.756878807"
-          weight={Random(5, 15)}
+          weight={getCryptoRandomInt(5, 15)}
           center={coordinates[index]}
         />
       </animated.g>
@@ -156,7 +159,7 @@ const Background = () => {
 
   useEffect(() => {
     const timeOut = setTimeout(() => {
-      const x = Random(0, viewWidth);
+      const x = getCryptoRandomInt(0, viewWidth);
       if (x > viewWidth / 2) {
         setMeteor(() => (
           <animated.g style={meteorSpringLeft}>

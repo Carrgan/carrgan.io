@@ -1,7 +1,7 @@
 import React, { createRef, useEffect, useState } from "react";
 import Play from "@site/static/img/icon/play.svg";
 import Styles from "./video.module.scss";
-import { isPhone } from "@site/src/browserHelper";
+import { isPhone } from "@site/src/browser-helper";
 
 const Video = ({ src, bg }: { src: string; bg: string }) => {
   const videoRef = createRef<HTMLVideoElement>();

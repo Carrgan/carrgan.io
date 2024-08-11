@@ -1,5 +1,5 @@
 import React from "react";
-import Skeleton from "@site/src/components/common/Skeleton";
+import Skeleton from "@site/src/components/common/skeleton";
 import { Grid } from "@mui/joy";
 
 const InterfaceGenerateLoader = () => {

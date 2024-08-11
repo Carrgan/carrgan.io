@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useMemo, useRef, useState } from "react";
-import PageWrapper from "@site/src/components/common/PageWrapper";
+import PageWrapper from "@site/src/components/common/page-wrapper";
 import { IParallax, Parallax, ParallaxLayer } from "@react-spring/parallax";
 import Style from "@site/src/pages/index.module.scss";
 import useScreenSize from "@site/src/use-available-screen-size";
@@ -8,10 +8,10 @@ import { animated, useSpring } from "@react-spring/web";
 
 import Keyboard from "@site/static/img/home/keyboard.png";
 import Earth from "@site/static/img/home/earth.png";
-import SkeletonFullLoading from "@site/src/components/common/SkeletonFullLoading";
+import SkeletonFullLoading from "@site/src/components/common/skeleton-full-loading";
 
 const Background = lazy(() => import("@site/src/components/home/background"));
-const Plants = lazy(() => import("@site/src/components/hello/plants"));
+const Plants = lazy(() => import("@site/src/components/home/plants"));
 const BubbleDialog = lazy(() => import("@site/src/components/home/bubble-dialog"));
 const SpaceCat = lazy(() => import("@site/src/components/home/space-cat"));
 const Guitar = lazy(() => import("@site/src/components/home/guitar"));

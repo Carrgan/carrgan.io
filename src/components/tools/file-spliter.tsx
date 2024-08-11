@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Button, Card, Input } from "@mui/joy";
-import FileUploader from "@site/src/components/common/FileUploader";
+import FileUploader from "@site/src/components/common/file-uploader";
 import JSZip from "jszip";
 import { splitArray } from "@site/src/helper";
 import { saveFile } from "@site/src/helper/save-file";
-import NumberInput from "@site/src/components/common/NumberInput";
+import NumberInput from "@site/src/components/common/number-input";
 import Style from "./file-spliter.module.scss";
 
 const FileSpliter = () => {

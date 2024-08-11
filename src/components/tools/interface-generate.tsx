@@ -3,7 +3,7 @@ import CodeBlock from "@theme/CodeBlock";
 import { read, utils } from "xlsx";
 // import { quicktypeJSON } from "@site/src/helper/quicktype";
 import { Grid, Input, Textarea } from "@mui/joy";
-import FileUploader from "@site/src/components/common/FileUploader";
+import FileUploader from "@site/src/components/common/file-uploader";
 import Style from "@site/src/css/code-help.module.css";
 import exampleJson from "@site/static/json-type-example.json";
 
