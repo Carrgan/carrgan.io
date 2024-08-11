@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import CodeBlock from "@theme/CodeBlock";
-import { Button, LinearProgress, Slider, useColorScheme } from "@mui/joy";
+import { Button, LinearProgress, Slider } from "@mui/joy";
 import Style from "./random-password.module.scss";
 import NumberInput from "@site/src/components/common/number-input";
 import ChoiceChips, { IChoiceChipsItem } from "@site/src/components/common/choice-chips";

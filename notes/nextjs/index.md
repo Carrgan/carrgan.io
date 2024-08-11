@@ -62,7 +62,7 @@ Would you like to customize the import alias (`@/*` by default)?  No / Yes
 说明
 
 <details>
-<SUMMARY>Tailwind CSS 是什么 ？</SUMMARY>
+<summary>Tailwind CSS 是什么 ？</summary>
 <div>
 
 Tailwind CSS 是一个实用程序优先的 CSS 框架，旨在帮助开发者快速构建现代用户界面。与传统的 CSS 框架（如 Bootstrap 或

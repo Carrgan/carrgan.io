@@ -16,7 +16,7 @@ module.exports = {
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/no-new-func": "off",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": 1,
+    "react-hooks/exhaustive-deps": 0,
     "@typescript-eslint/no-unused-vars": [
       "warn",
       { varsIgnorePattern: "_", argsIgnorePattern: "_" }
