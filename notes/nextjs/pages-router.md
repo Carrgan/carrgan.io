@@ -85,7 +85,7 @@ const LeanNextJsApp = ({ Component, pageProps }: AppProps) => {
 export default LeanNextJsApp
 ```
 
-我们可以为组件添加而外的属性，来决定对组建的渲染
+我们可以通过配置组件的 `key` 属性，来决定对组件的渲染
 
 ```tsx pages/_app.tsx
 import type { AppProps } from "next/app";
@@ -99,7 +99,7 @@ type AppPropsWithKey = AppProps & { Component: NextPageWithKey }
 const LeanNextJsApp = ({ Component, pageProps }: AppPropsWithKey) => {
 
   // ...Get valied root key from api
-  if (!Component?.key || !valiedKey.include(Component.key)) {
+  if (!Component?.name || !valiedKey.include(Component.key)) {
     return <NotFound />
   }
   return (
