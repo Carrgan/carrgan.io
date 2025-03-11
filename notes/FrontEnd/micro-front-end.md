@@ -130,7 +130,7 @@ Module Federation 的打包机制，我们可以从 **项目构建时** 和 **�
 ```javascript
 shared: {
    react: { singleton: true, eager: false, requiredVersion: '^17.0.0' }
-}
+}z
 ```
 
 - **`singleton: true`**：确保在整个应用中只有一个 `react` 实例。
