@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useMemo, useRef, useState } from "react";
+import React, { JSX, lazy, Suspense, useMemo, useRef, useState } from "react";
 import PageWrapper from "@site/src/components/common/page-wrapper";
 import { IParallax, Parallax, ParallaxLayer } from "@react-spring/parallax";
 import Style from "@site/src/pages/index.module.scss";

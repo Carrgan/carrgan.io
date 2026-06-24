@@ -1,10 +1,9 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const darkCodeTheme = require("prism-react-renderer/themes/nightOwl");
+import { themes } from "prism-react-renderer";
+const lightCodeTheme = themes.github;
+const darkCodeTheme = themes.nightOwl;
 
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
@@ -18,8 +17,12 @@ const config = {
   url: "https://carrgan.github.io",
   baseUrl: "/",
   onBrokenLinks: "warn",
-  onBrokenMarkdownLinks: "warn",
   favicon: "img/logo.svg",
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: "warn"
+    }
+  },
   organizationName: "carrgan", // Usually your GitHub org/user name.
   projectName: "carrgan.github.io", // Usually your repo name.
   deploymentBranch: "main",
@@ -38,6 +41,7 @@ const config = {
         docs: false,
         blog: {
           showReadingTime: true,
+          onUntruncatedBlogPosts: 'ignore',
           // Please change this to your repo.
           // editUrl: "https://github.com/facebook/docusaurus/edit/main/website/blog/"
           readingTime: ({ content, frontMatter, defaultReadingTime }) => {
@@ -118,7 +122,7 @@ const config = {
             position: "right"
           },
           {
-            label: "v3.0.1(2025.8)",
+            label: "v3.1.0(2026.6)",
             position: "right",
             to: "/"
           }
@@ -247,6 +251,7 @@ const config = {
          * Required for any multi-instance plugin
          */
         id: "life",
+        onUntruncatedBlogPosts: 'ignore',
         /**
          * URL route for the blog section of your site.
          * *DO NOT* include a trailing slash.
@@ -262,6 +267,7 @@ const config = {
       "@docusaurus/plugin-content-blog",
       {
         id: "tech-blog",
+        onUntruncatedBlogPosts: 'ignore',
         /**
          * URL route for the blog section of your site.
          * *DO NOT* include a trailing slash.
@@ -276,4 +282,4 @@ const config = {
   ]
 };
 
-module.exports = config;
+export default config;

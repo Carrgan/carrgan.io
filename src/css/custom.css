@@ -62,3 +62,8 @@ html .hide {
     justify-content: center;
     align-items: center;
 }
+
+/* @react-spring/parallax v10 uses position:absolute — its parent needs position:relative to define a height context */
+.page-wrapper {
+  position: relative;
+}

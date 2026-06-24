@@ -20,7 +20,7 @@ const PageWrapper = ({
           {noLayout ? (
             children
           ) : (
-            <Layout wrapperClassName={"test"} noFooter={noFooter}>
+            <Layout wrapperClassName={"page-wrapper"} noFooter={noFooter}>
               {children}
             </Layout>
           )}
