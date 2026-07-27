@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Button, Card, Input } from "@mui/joy";
+import { Button, Card } from "@mui/material";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@mui/material/InputAdornment";
 import FileUploader from "@site/src/components/common/file-uploader";
 import JSZip from "jszip";
 import { splitArray } from "@site/src/helper";
@@ -56,9 +58,9 @@ const FileSpliter = () => {
             onChange={value => setSize(value)}
             startDecorator={"Max line: "}
           />
-          <Input
+          <OutlinedInput
             value={trunkName}
-            startDecorator={"Trunk name: "}
+            startAdornment={<InputAdornment position="start">Trunk name:</InputAdornment>}
             onChange={e => setTrunkName(e.target.value)}
           />
           <Button onClick={onSplit} disabled={!uploadedFile} loading={loading}>

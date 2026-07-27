@@ -2,7 +2,7 @@ import React from "react";
 import RandomPassword from "@site/src/components/tools/random-password";
 import MuiPageWrapper from "@site/src/components/common/mui-page-wrapper";
 
-export default function PasswordGenerator(): JSX.Element {
+export default function PasswordGenerator() {
   return (
     <MuiPageWrapper>
       <div style={{ display: "flex", justifyContent: "center", margin: 24 }}>

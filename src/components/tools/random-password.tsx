@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import CodeBlock from "@theme/CodeBlock";
-import { Button, LinearProgress, Slider } from "@mui/joy";
+import { Button, LinearProgress, Slider } from "@mui/material";
 import Style from "./random-password.module.scss";
 import NumberInput from "@site/src/components/common/number-input";
 import ChoiceChips, { IChoiceChipsItem } from "@site/src/components/common/choice-chips";
@@ -88,11 +88,18 @@ const RandomPassword = () => {
       {/*</div>*/}
       <CodeBlock className={Style.codeBlock}>{password}</CodeBlock>
       <LinearProgress
-        style={{
-          color: passwordStranger < 25 ? "#77061a" : passwordStranger < 100 ? "#d4a82d" : "#0d5e25"
-        }}
-        determinate
+        variant="determinate"
         value={passwordStranger > 100 ? 100 : passwordStranger}
+        sx={{
+          "& .MuiLinearProgress-bar": {
+            backgroundColor:
+              passwordStranger < 25
+                ? "#77061a"
+                : passwordStranger < 100
+                  ? "#d4a82d"
+                  : "#0d5e25"
+          }
+        }}
       />
       <div className={Style.lengthInput}>
         <Slider

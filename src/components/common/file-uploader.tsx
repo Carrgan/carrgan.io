@@ -1,4 +1,4 @@
-import { Button } from "@mui/joy";
+import { Button } from "@mui/material";
 import { UploadFile } from "@mui/icons-material";
 import React, { createRef, useEffect, useState } from "react";
 
@@ -38,7 +38,7 @@ const FileUploader = ({ onChange, accept }: IFileUploader) => {
         accept={accept}
         onChange={e => handleFilterUpload(e.target)}
       />
-      <Button onClick={handleButtonClick} startDecorator={<UploadFile />}>
+      <Button onClick={handleButtonClick} startIcon={<UploadFile />}>
         <span
           style={{
             maxWidth: "100px",

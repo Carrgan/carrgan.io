@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import CodeBlock from "@theme/CodeBlock";
 import { read, utils } from "xlsx";
 // import { quicktypeJSON } from "@site/src/helper/quicktype";
-import { Grid, Input, Textarea } from "@mui/joy";
+import Grid from "@mui/material/Grid";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField from "@mui/material/TextField";
 import FileUploader from "@site/src/components/common/file-uploader";
 import Style from "@site/src/css/code-help.module.css";
 import exampleJson from "@site/static/json-type-example.json";
@@ -171,13 +174,13 @@ const InterfaceGenerate = () => {
 
   return (
     <Grid container spacing={2} sx={{ flexGrow: 1 }} style={{ padding: "16px" }}>
-      <Grid xs={6}>
+      <Grid size={{ xs: 6 }}>
         <Grid container spacing={2} sx={{ flexGrow: 1 }}>
-          <Grid style={{ paddingBottom: 24, display: "flex" }}>
+          <Grid size={12} style={{ paddingBottom: 24, display: "flex" }}>
             <FileUploader onChange={handleFileUpload} accept={".xlsx"} />
-            <Input
+            <OutlinedInput
               style={{ marginLeft: 16 }}
-              startDecorator={"Root type name:"}
+              startAdornment={<InputAdornment position="start">Root type name:</InputAdornment>}
               value={typeRootName}
               onChange={e => setTypeRootName(e.target.value)}
             />
@@ -200,14 +203,17 @@ const InterfaceGenerate = () => {
           {/*  ))}*/}
           {/*</Grid>*/}
         </Grid>
-        <Textarea
+        <TextField
           className={Style.textBox}
           value={inputValue}
           error={jsonInputError}
           onChange={e => handleJsonInput(e.target.value)}
+          multiline
+          minRows={10}
+          sx={{ width: "100%" }}
         />
       </Grid>
-      <Grid xs={6}>
+      <Grid size={{ xs: 6 }}>
         <CodeBlock className={Style.codeBlock} title={"Typescript"} language={"typescript"}>
           {tsTypes}
         </CodeBlock>

@@ -1,7 +1,6 @@
 import * as React from "react";
-import Checkbox from "@mui/joy/Checkbox";
-import List from "@mui/joy/List";
-import ListItem from "@mui/joy/ListItem";
+import Chip from "@mui/material/Chip";
+import Box from "@mui/material/Box";
 import Done from "@mui/icons-material/Done";
 import { useCallback, useMemo } from "react";
 
@@ -24,53 +23,25 @@ const ChoiceChips = ({ selectedItems, items, onChange }: IChoiceChips) => {
     [selectedValues]
   );
   return (
-    <List
-      orientation="horizontal"
-      wrap
-      sx={{
-        "--List-gap": "8px",
-        "--ListItem-radius": "20px",
-        "--ListItem-minHeight": "32px"
-      }}
-    >
-      {items.map((item, index) => (
-        <ListItem key={item.value}>
-          {includeItem(item) && (
-            <Done
-              fontSize="medium"
-              color="primary"
-              sx={{ ml: -0.5, mr: 0.5, zIndex: 2, pointerEvents: "none" }}
-            />
-          )}
-          <Checkbox
-            size="sm"
-            disabled={item.disable}
-            disableIcon
-            overlay
-            label={item.title}
-            checked={includeItem(item)}
-            variant={includeItem(item) ? "soft" : "outlined"}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              if (event.target.checked) {
-                onChange([...selectedItems, item]);
-              } else {
-                onChange(selectedItems.filter(selectedItem => selectedItem.value !== item.value));
-              }
-            }}
-            slotProps={{
-              action: ({ checked }) => ({
-                sx: checked
-                  ? {
-                      border: "1px solid",
-                      borderColor: "primary.500"
-                    }
-                  : {}
-              })
-            }}
-          />
-        </ListItem>
+    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+      {items.map((item) => (
+        <Chip
+          key={item.value}
+          label={item.title}
+          icon={includeItem(item) ? <Done /> : undefined}
+          variant={includeItem(item) ? "filled" : "outlined"}
+          color={includeItem(item) ? "primary" : "default"}
+          disabled={item.disable}
+          onClick={() => {
+            if (includeItem(item)) {
+              onChange(selectedItems.filter(s => s.value !== item.value));
+            } else {
+              onChange([...selectedItems, item]);
+            }
+          }}
+        />
       ))}
-    </List>
+    </Box>
   );
 };
 

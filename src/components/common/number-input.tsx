@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { Input } from "@mui/joy";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@mui/material/InputAdornment";
 
 export interface INumberInput {
   value: number;
@@ -31,11 +32,16 @@ const NumberInput = ({ value, onChange, max, min, startDecorator }: INumberInput
   };
 
   return (
-    <Input
+    <OutlinedInput
       type={"number"}
       value={displayValue}
-      startDecorator={startDecorator}
+      startAdornment={
+        startDecorator ? (
+          <InputAdornment position="start">{startDecorator}</InputAdornment>
+        ) : undefined
+      }
       onChange={handleValueChange}
+      sx={{ maxWidth: 300 }}
     />
   );
 };
